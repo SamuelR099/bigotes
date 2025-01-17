@@ -1,21 +1,10 @@
+/* SemiBold Italic */
 @font-face {
     font-family: 'Rubik';
-    src: url('fonts/Rubik-Regular.woff2') format('woff2'),
-         url('fonts/Rubik-Regular.woff') format('woff');
-    font-weight: 400;
-  }
-  
-  @font-face {
-    font-family: 'Rubik';
-    src: url('fonts/Rubik-Bold.woff2') format('woff2'),
-         url('fonts/Rubik-Bold.woff') format('woff');
-    font-weight: 700;
-  }
-  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
-  body {
-      font-family: 'Rubik', sans-serif;
-  }
-  
+    src: url('fonts/Rubik-SemiBoldItalic.woff2') format('woff2'),
+    url('fonts/Rubik-SemiBoldItalic.woff') format('woff');
+    font-weight: 600; font-style: italic; 
+   }
   
 
 header {

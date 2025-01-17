@@ -1,0 +1,22 @@
+<header>
+	
+	<nav class='navbar'>
+		<ul>
+			<li><a href='/'>Inicio</a></li>
+			<li><a href='/about'>Nuestros Servicios</a></li>
+			<li><a href='/proyect'>Proyectos</a></li>
+			<li><a href='/contact'>Contáctenos</a></li>
+		</ul>
+	</nav>
+</header>
+<script>
+
+	document.addEventListener('DOMContentLoaded', () => {
+	  const header = document.querySelector("header");
+	  if (header) {
+		window.addEventListener("scroll", () => {
+		  header.classList.toggle("scrolled", window.scrollY > 0);
+		});
+	  }
+	});
+	</script>

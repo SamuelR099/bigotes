@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/rubik": "^5.1.1",
     "astro": "^5.1.7",
     "website": "file:"
   }

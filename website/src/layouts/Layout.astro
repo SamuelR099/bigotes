@@ -1,20 +1,23 @@
 ---
 // Supports weights 300-900
 import '@fontsource-variable/rubik';
+import Header from '../components/Header.astro'
+---  
 
----
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Embragues</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embragues</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    
+    <main>
+        <slot />
+    </main>
+</body>
 </html>
 
 

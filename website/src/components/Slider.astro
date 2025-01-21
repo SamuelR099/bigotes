@@ -1,0 +1,78 @@
+
+<div class='slider'>
+	<div class='slide'><img src='/images/engranajes.jpg' alt='pieza 1' ></div>
+	<div class='slide'><img src='/images/piezas.jpg' alt='pieza 2' ></div>
+	<div class='slide'><img src='/images/transm.jpg' alt='pieza 3' ></div>
+</div>
+
+<section class='home' id='home'>
+	<div class='home-content'>
+		<h1>
+			Simulacion,personalización<br /> y venta de proyectos<br /> inmobiliarios en la web.
+		</h1>
+		<h2>Explore los beneficios de nuestras simulaciones 3D</h2>
+	</div>
+</section>
+
+<script>
+	// Espera a que el DOM esté completamente cargado antes de ejecutar el código
+	document.addEventListener('DOMContentLoaded', function () {
+		// Selecciona todos los elementos con la clase 'slide'
+		const slides = document.querySelectorAll('.slide')
+		// Inicializa el índice de la diapositiva actual
+		let currentSlide = 0
+
+		// Función para mostrar una diapositiva específica
+		function showSlide(slideIndex: number) {
+			// Recorre todas las diapositivas
+			slides.forEach((slide, index) => {
+				if (index === slideIndex) {
+					// Muestra la diapositiva actual
+					slide.classList.add('active')
+				} else {
+					// Oculta las demás diapositivas
+					slide.classList.remove('active')
+				}
+			})
+			// Actualiza el índice de la diapositiva actual
+			currentSlide = slideIndex
+		}
+
+		// Función para pasar a la siguiente diapositiva
+		function nextSlide() {
+			// Calcula el índice de la siguiente diapositiva (vuelve al principio si es la última)
+			let nextIndex = (currentSlide + 1) % slides.length
+			showSlide(nextIndex)
+		}
+
+		// Muestra la primera diapositiva al cargar la página
+		showSlide(0)
+
+		// Cambia de diapositiva cada 5 segundos
+		setInterval(nextSlide, 5000)
+
+		// Reinicia el ciclo cuando llega a la última diapositiva
+		setInterval(() => {
+			if (currentSlide === slides.length - 1) {
+				// Espera 3 segundos antes de volver a la primera diapositiva
+				setTimeout(() => showSlide(0), 3000)
+			}
+		}, 5000)
+	})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

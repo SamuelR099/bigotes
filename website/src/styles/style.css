@@ -14,29 +14,42 @@ header {
   left: 0;
   width: 100%;
   z-index: 10;
-  padding: 30px 9%;
+  padding: 15px 5%;
   box-sizing: border-box;
   justify-content: space-between;
   align-items: center;
   display: flex;
   transition: all 0.3s ease;
-  padding-bottom: 60px;
+ 
 }
 
 header.scrolled {
   padding: 15px 9%;
   background-color: #fff;
 }
+.navbar { 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+   width: 100%; }
+     
+.navbar svg { 
+       width: 50px; /* Ajusta el tamaño según tus necesidades JM*/
+       max-width: 100%; 
+       height: auto;
+       margin-right: 20px; }  
 
 .navbar ul {
-  list-style-type: none;
+  list-style-type: none; 
   padding: 0;
-  display: flex;
-  margin: 0;
+   display: flex; 
+   margin: 0; 
+   flex-grow: 1; 
+   justify-content: flex-end;
 }
 
 .navbar li {
-  margin-left: 2rem;
+  margin-left: 20px;
 }
 
 .navbar a {
@@ -99,7 +112,6 @@ section {
   }
   
   .navbar ul {
-<<<<<<< HEAD
     list-style-type: none;
     padding: 0;
     display: flex;
@@ -108,19 +120,10 @@ section {
     flex-grow: 1; /* Permite que los elementos del menú ocupen el espacio restante */ 
     justify-content: flex-end; /* Alínea los elementos del menú al final del contenedor */
     margin-left: auto;
-=======
-      flex-direction: column;
-      align-items: flex-start;
->>>>>>> d1a885c2f0f783f260a1743fa53878e9b5f92fd1
   }
 
   .navbar li {
-<<<<<<< HEAD
     margin-left: 20px;
-=======
-      margin-left: 0;
-      margin-bottom: 1rem;
->>>>>>> d1a885c2f0f783f260a1743fa53878e9b5f92fd1
   }
 
   .about .container {

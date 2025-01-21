@@ -15,29 +15,42 @@ header {
   left: 0;
   width: 100%;
   z-index: 10;
-  padding: 30px 9%;
+  padding: 15px 5%;
   box-sizing: border-box;
   justify-content: space-between;
   align-items: center;
   display: flex;
   transition: all 0.3s ease;
-  padding-bottom: 60px;
+ 
 }
 
 header.scrolled {
   padding: 15px 9%;
   background-color: #fff;
 }
+.navbar { 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+   width: 100%; }
+     
+.navbar svg { 
+       width: 50px; /* Ajusta el tamaño según tus necesidades JM*/
+       max-width: 100%; 
+       height: auto;
+       margin-right: 20px; }  
 
 .navbar ul {
-  list-style-type: none;
+  list-style-type: none; 
   padding: 0;
-  display: flex;
-  margin: 0;
+   display: flex; 
+   margin: 0; 
+   flex-grow: 1; 
+   justify-content: flex-end;
 }
 
 .navbar li {
-  margin-left: 2rem;
+  margin-left: 20px;
 }
 
 .navbar a {
@@ -155,15 +168,34 @@ section {
   header.scrolled {
       padding: 10px 5%;
   }
-
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Ajusta esto si necesitas cambiar el espacio entre el logo y los enlaces */
+    width: 100%;
+    /* Opcional: para añadir algo de espacio interno */
+  }
+  
+  .navbar svg {
+    width: 50px; /* Ajusta el tamaño según tus necesidades */
+    height: auto;
+    margin-right: 20px;
+    /* Puedes añadir más estilos según necesites */
+  }
+  
   .navbar ul {
-      flex-direction: column;
-      align-items: flex-start;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1; /* Permite que los elementos del menú ocupen el espacio restante */ 
+    justify-content: flex-end; /* Alínea los elementos del menú al final del contenedor */
+    margin-left: auto;
   }
 
   .navbar li {
-      margin-left: 0;
-      margin-bottom: 1rem;
+    margin-left: 20px;
   }
 
   .about .container {

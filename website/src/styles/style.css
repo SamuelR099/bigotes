@@ -15,12 +15,15 @@ header {
   left: 0;
   width: 100%;
   z-index: 10;
-  padding: 15px 5%;
+  padding: 30px 9%;
   box-sizing: border-box;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   display: flex;
   transition: all 0.3s ease;
+  background:#BCCCDC;
+  opacity: 0.8; 
+  /*background-color: #BCCCDC;*/
  
 }
 
@@ -31,9 +34,13 @@ header.scrolled {
 .navbar { 
   display: flex;
   align-items: center;
-  justify-content: space-between;
-   width: 100%; }
-     
+  justify-content: center;
+  flex-grow: 1;
+  
+  }
+  .logo-container { 
+    margin-right: auto; /* Empuja el logo a la izquierda */ 
+  }
 .navbar svg { 
        width: 50px; /* Ajusta el tamaño según tus necesidades JM*/
        max-width: 100%; 
@@ -46,7 +53,7 @@ header.scrolled {
    display: flex; 
    margin: 0; 
    flex-grow: 1; 
-   justify-content: flex-end;
+   justify-content: center;
 }
 
 .navbar li {
@@ -299,6 +306,29 @@ section {
   
   padding: 10rem 9% 2rem;
 }
+
+.social-icons {
+  display: flex;
+  align-items: center; /* Centra los íconos verticalmente */
+  margin-left: auto;
+  gap: 15px; 
+}
+
+.social-icons a {
+  color: #f6f6f6;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #00bfff;
+  transform: scale(1.2);
+}
+
+.social-icons svg {
+  width: 24px;
+  height: 24px;
+}
+
 
 /* Media Queries para teléfonos */
 @media (max-width: 768px) {

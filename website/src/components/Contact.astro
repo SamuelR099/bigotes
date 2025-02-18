@@ -1,0 +1,84 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" /></link>
+<body>
+    <section>
+        <div class="title-container" id='contactenos'> 
+            <h1>Contáctenos</h1>
+        </div>
+    <div class="container">
+        <div class="contact-info">
+           
+            <h2>RESOLVEMOS TUS DUDAS</h2>
+            <div class="contact-item">
+                <i class="fa-solid fa-mobile-button"></i>
+                <p>Teléfono<br>(+57) 30000003</p>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <p>Correo Electrónico<br>@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-thumbtack"></i>
+                <p>Ubicación<br>Cúcuta - Norte de Santander</p>
+            </div>
+            
+            <div class="social-links">
+                <h3>SÍGUENOS</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook">📱</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="YouTube">📺</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>FORMULARIO</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" required></textarea>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terminos" name="terminos" required>
+                    <label for="terminos">Declaro que conozco y Acepto los Términos, Condiciones y Protección de Datos y acepto recibir información acerca de producto, eventos y datos.</label>
+                </div>
+                
+                <button type="submit" class="submit-btn">ENVIAR MENSAJE</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="map"></div>
+</section>
+
+<hr>
+<div class="map-container">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26585.243488631826!2d-72.48369072196131!3d7.903417299741571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6645200b327ffd%3A0xd32d6a5bbaec2449!2sLa%20Gran%20Cachapa!5e0!3m2!1ses!2sco!4v1738246047400!5m2!1ses!2sco" 
+        width="800" 
+        height="600" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+   
+</body>
+</html>

@@ -1,4 +1,5 @@
-@import '@fortawesome/fontawesome-free/css/all.css';
+
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 70px; /* Ajusta este valor según la altura de tu header */
@@ -10,9 +11,6 @@ body {
   height: 100%;
   font-family: 'Rubik Variable', sans-serif;
   background-color: #fffefb;
- 
-  line-height: 1.5;
-  color: var(--color-text);
 }
 
 header {
@@ -581,16 +579,6 @@ hr {
 .search-container {
   display: none; /* Ocultar el contenedor en dispositivos más grandes */
 }
-
-
-
-
-
-
-
-
-
-
 /* Menú desplegable (oculto en pantallas grandes) */
 
 /* Media Queries para teléfonos */
@@ -792,7 +780,18 @@ hr {
   .menu-container {
     display: block; /* Muestra el contenedor del menú desplegable */
   }
-
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s;
+    z-index: 1000;
+  }
   .menu-icon {
     display: block; /* Muestra el ícono de hamburguesa en móviles */
     cursor: pointer;

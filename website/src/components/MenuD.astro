@@ -1,22 +1,46 @@
 ---
-// Menu.astro
+
 ---
+<html>
+<body>
 
 <div class="menu">
+        
     <div class="menu-header">
       <input type="text" placeholder="Buscar por producto" class="search-input" />
     </div>
     <div class="menu-categories">
       <p class="menu-title">CATEGORÍAS</p>
       <ul>
-        <li><a href="#">Tienda</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="/#tienda">Tienda</a></li>
+        <li><a href="/#servicios">Nuestros Servicios</a></li>
         <li><a href="#">Mercado Libre</a></li>
-        <li><a href="#">Cotizar Servicio</a></li>
-        <li><a href="#">Contáctenos</a></li>
+        <li><a href="/#productos">Productos</a></li>
+        <li><a href="/#contactenos">Contáctenos</a></li>
         <li><a href="#">Políticas de Garantía</a></li>
-        <li><a href="#">Lista de Deseos</a></li>
-        <li><a href="#">Inicio de Sesión / Registro</a></li>
+        <li><a href="/Wishlist">Lista de Deseos</a></li>
+        <li><a href="/Login">Inicio de Sesión / Registro</a></li>
       </ul>
     </div>
   </div>
+
+</body>
+</html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle") as HTMLInputElement | null;
+    const menu = document.querySelector(".menu") as HTMLElement | null;
+
+    if (!menuToggle || !menu) return; // Verifica que existan los elementos
+
+    document.addEventListener("click", (event) => {
+      const target = event.target as Node | null; // Asegura que sea un nodo válido
+
+      // Verifica si el clic fue fuera del menú y del botón toggle
+      if (target && !menu.contains(target) && !menuToggle.contains(target)) {
+        menuToggle.checked = false; // Cierra el menú
+      }
+    });
+  });
+</script>

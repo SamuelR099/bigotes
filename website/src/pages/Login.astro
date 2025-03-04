@@ -1,0 +1,361 @@
+---
+
+import Menu from "../components/Menu.astro"
+import Header from "../components/Header.astro" 
+import Footer from "../components/Footer.astro"
+import "@fortawesome/fontawesome-free/css/all.min.css";
+---   
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <Menu />
+    <Header class="wishlist-header" /> 
+    <header class="headerd">
+        <div class="bannerr">
+            <h1>Mi Cuenta</h1>
+            <nav>
+                <a href="/#inicio">INICIO</a> / <a>Mi Cuenta</a>
+            </nav>
+        </div>
+    </header>
+    <div class="auth-container">
+        <!-- Formulario de Acceder -->
+        <div class="login-container">
+            <h2 class="title">ACCEDER</h2>
+            <div class="form-box">
+                <form>
+                    <label for="login-email">NOMBRE DE USUARIO O CORREO ELECTRÓNICO *</label>
+                    <input type="email" id="login-email" placeholder="Ingrese su correo">
+
+                    <label for="login-password">CONTRASEÑA *</label>
+                    <div class="password-container">
+                        <input type="password" id="login-password" placeholder="Ingrese su contraseña">
+                        <span class="toggle-password"></span>
+                    </div>
+
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">RECUÉRDAME</label>
+                    </div>
+
+                    <button class="btn">ACCEDER</button>
+                    <a href="#" class="forgot-password">¿OLVIDASTE LA CONTRASEÑA?</a>
+                </form>
+            </div>
+        </div>
+
+        <!-- Separador -->
+        <div class="separator"></div>
+
+        <!-- Formulario de Registrarse -->
+        <div class="login-container">
+            <h2 class="title">REGISTRARSE</h2>
+            <div class="form-box">
+                <form>
+                    <label for="register-email">DIRECCIÓN DE CORREO ELECTRÓNICO *</label>
+                    <input type="email" id="register-email" placeholder="Ingrese su correo">
+
+                    <label for="register-password">CONTRASEÑA *</label>
+                    <div class="password-container">
+                        <input type="password" id="register-password" placeholder="Ingrese su contraseña">
+                        <span class="toggle-password"></span>
+                    </div>
+
+                    <div class="remember-me">
+                        <input type="checkbox" id="subscribe">
+                        <label for="subscribe">SUSCRÍBETE A NUESTRO BOLETÍN</label>
+                    </div>
+
+                    <button class="btn">REGISTRARSE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <main>
+    <Footer/>
+    </main>
+</body>
+</html>
+<style scoped>
+
+            
+.headerd {
+background: url('/images/piezas.jpg') no-repeat center center/cover;
+color: white;
+padding: 100px 0;
+text-align: center;
+margin-top: 60px; /* Asegura que no haya espacio adicional */
+position: relative; /* Asegura que no tenga un z-index alto */
+z-index: 0; /* Opcional: Asegura que esté por debajo del primer header */
+}
+            
+            /* Estilos para el contenido de la lista de deseos */
+.empty-favorites {
+text-align: center;
+margin-top: 2rem;
+}
+.bannerr h1 {
+margin: 0;
+font-size: 2.5em;
+font-weight: bold;
+}
+nav a {
+color: white;
+text-decoration: none;
+margin: 0 5px;
+font-size: 0.9em;
+}
+                      
+h2 {
+text-align: left;
+font-size: 1.2em;
+font-weight: bold; 
+
+}
+.auth-container {
+  max-width: 92%; /* Asegura que tome el ancho total disponible */
+  display: flex;  /* Cambia a flexbox para mayor control */
+  justify-content: center; /* Centra los formularios */
+  gap: 90px; /* Espacio entre los formularios */
+  flex-wrap: wrap; /* Permite que se adapten en pantallas pequeñas */
+}
+
+.login-container {
+  width: 600px; /* Aumenta el tamaño de cada formulario */
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.title {
+  color: #00619a;
+  font-size: 36px; /* Se aumentó un poco el tamaño */
+  font-weight: bold;
+  text-align: left;
+}
+
+.form-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  width: 700px; /* Hace que el formulario no se deforme */
+  max-width: 120%; 
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+label {
+  font-weight: bold;
+  font-size: 18px; /* Letras más grandes */
+  margin-bottom: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 16px;
+  padding-right: 45px; /* Espacio para el icono */
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+}
+
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.remember-me input {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.btn {
+  background-color: #00619a;
+  color: white;
+  border: none;
+  padding: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.btn:hover {
+  background-color: #00619a;
+}
+
+.forgot-password {
+  text-align: center;
+  display: block;
+  margin-top: 15px;
+  color: #00619a;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.separator {
+  width: 2px;
+  background-color: #ccc;
+  height: auto;
+  align-self: center;
+}
+@media screen and (max-width: 768px) {
+  .auth-container {
+  max-width: 92%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+/* FORMULARIOS */
+.login-container {
+  width: 100%;
+  max-width: 500px; /* Reduce el tamaño para mejorar la proporción */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* TÍTULOS */
+.title {
+  color: #00619a;
+  font-size: 28px; /* Reduce el tamaño en móviles */
+  font-weight: bold;
+  text-align: left;
+}
+
+/* CUADRO DEL FORMULARIO */
+.form-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px; /* Evita que se agrande demasiado */
+  box-sizing: border-box;
+}
+
+/* FORMULARIOS */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  font-size: 16px; /* Reduce el tamaño del texto */
+  margin-bottom: 12px;
+}
+
+input {
+  width: 100%;
+  padding: 12px; /* Reduce el padding */
+  font-size: 16px; /* Reduce el tamaño de la letra */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+/* CONTENEDOR DE CONTRASEÑA */
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+/* RECORDARME */
+.remember-me {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.remember-me input {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+/* BOTÓN */
+.btn {
+  background-color: #00619a;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.btn:hover {
+  background-color: #00507a;
+}
+
+/* LINK OLVIDAR CONTRASEÑA */
+.forgot-password {
+  text-align: center;
+  display: block;
+  margin-top: 12px;
+  color: #00619a;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* SEPARADOR */
+.separator {
+  width: 2px;
+  background-color: #ccc;
+  height: auto;
+  align-self: center;
+}
+
+}
+</style>

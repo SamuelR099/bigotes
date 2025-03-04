@@ -3,13 +3,15 @@ import JetBrains from "./icons/JetBrains.astro"
 import Whatsapp from "./icons/Whatsapp.astro"
 import Usuario from "./icons/Usuario.astro"
 import MenuD from "./MenuD.astro"
-
+const { class: className } = Astro.props; // Recibe la clase como prop
 ---
 
-<header>
+<header class={`navbar ${className || ''}`}>
   <nav class="navbar">
     <div class="logo-container">
+      <a href="/#inicio">
       <JetBrains class="logo" />
+    </a>
     </div>
     
     <ul class="nav-links">
@@ -24,7 +26,9 @@ import MenuD from "./MenuD.astro"
     
     <div class="social-icons">
       <a href="https://wa.link/exo3rt" target="_blank">
-        <Whatsapp />
+        <span class="icono-con-sombra">
+          <Whatsapp />
+      </span>
       </a>
       <a href="#" target="_blank">
         <Usuario />

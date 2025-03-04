@@ -2,56 +2,52 @@
 import JetBrains from "./icons/JetBrains.astro"
 import Whatsapp from "./icons/Whatsapp.astro"
 import Usuario from "./icons/Usuario.astro"
+import MenuD from "./MenuD.astro"
+
 ---
 
 <header>
-	
-	<nav class='navbar'>
-		<div class="logo-container">
-	<JetBrains class="logo"/>
-</div>
-		<ul>
-			<li><a href='#inicio'>Inicio</a></li>
-			<li><a href='#tienda'>Tienda</a></li>
-			<li><a href='#servicios'>Nuestros Servicios</a></li>
-			<li><a href='#productos'>Productos</a></li>
-			<li><a href='#contactenos'>Contáctenos</a></li>
-		</ul>
-		<div class="social-icons">
-			<a href="https://wa.link/exo3rt" target="_blank">
-				<Whatsapp />
-			</a>
+  <nav class="navbar">
+    <div class="logo-container">
+      <JetBrains class="logo" />
+    </div>
+    
+    <ul class="nav-links">
+      
+      <li><a href='#inicio'>Inicio</a></li>
+      <li><a href='/store'>Tienda</a></li>
+      <li><a href='#servicios'>Nuestros Servicios</a></li>
+      <li><a href='#productos'>Productos</a></li>
+      <li><a href='#contactenos'>Contactenos</a></li>
+    </ul>
 
-			
-			<div>
-			<a href="#" target="_blank" >
-			<Usuario/>	
-			</a>
-			<div/>
-
-			<a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-	     </div>
-	
-
-			<a href="#" target="_blank">
-				<Usuario />
-			</a>
-			<a href="#" target="_blank">
-				<i class="fab fa-instagram"></i>
-			</a>
-		</div>
-
-	</nav>
+    
+    <div class="social-icons">
+      <a href="https://wa.link/exo3rt" target="_blank">
+        <Whatsapp />
+      </a>
+      <a href="#" target="_blank">
+        <Usuario />
+      </a>
+    </div>
+    <div class="menu-container">
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon">
+        <div class="hamburger"></div>
+      </label>
+     <!-- Menú desplegable -->
+     <MenuD />
+  </nav>
 </header>
-<script>
 
-	document.addEventListener('DOMContentLoaded', () => {
-	  const header = document.querySelector("header");
-	  
-	  if (header) {
-		window.addEventListener("scroll", () => {
-		  header.classList.toggle("scrolled", window.scrollY > 0);
-		});
-	  }
-	});
-	</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector("header");
+    
+    if (header) {
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 0);
+    });
+    }
+  });
+</script>

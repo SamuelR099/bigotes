@@ -1,26 +1,49 @@
 ---
-// Supports weights 300-900
 import '@fontsource-variable/rubik';
-import Header from '../components/Header.astro'
-
+import Header from '../components/Header.astro';
 ---
 
-
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embragues</title>
     <link rel="stylesheet" href="../src/styles/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
 </head>
 <body>
     
+
     <main>
         <slot />
     </main>
+    
+
+    <footer class="footer">
+        <!-- Add footer content here -->
+    </footer>
+
+    <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        declare const Swiper: any;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.swiper', {
+                direction: 'horizontal',
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    bulletClass: 'banner-pagination-bullet',
+                    bulletActiveClass: 'banner-pagination-bullet-active',
+                },
+            });
+        });
+    </script>
 </body>
 </html>
-
-

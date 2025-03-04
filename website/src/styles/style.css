@@ -1,62 +1,64 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px; /* Ajusta este valor según la altura de tu header */
+}
 
-
-   body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-    font-family: 'Rubik Variable', sans-serif;
-    background-color: #fffefb;
-	}
-
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Rubik Variable', sans-serif;
+  background-color: #fffefb;
+ 
+  line-height: 1.5;
+  color: var(--color-text);
+}
 
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 1000;
   padding: 30px 9%;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
   display: flex;
   transition: all 0.3s ease;
-  background:#BCCCDC;
-  opacity: 0.8; 
-  /*background-color: #BCCCDC;*/
- 
-  
-  /*background-color: #BCCCDC;*/
- 
+  height: 60px; /* Ajusta este valor según la altura de tu header */
 }
 
 header.scrolled {
   padding: 15px 9%;
   background-color: #fff;
 }
-.navbar { 
+
+
+.logo-container {
+  margin-right: auto; /* Empuja el logo a la izquierda */
+}
+
+.navbar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  
-  }
-  .logo-container { 
-    margin-right: auto; /* Empuja el logo a la izquierda */ 
-  }
-.navbar svg { 
-       width: 50px; /* Ajusta el tamaño según tus necesidades JM*/
-       max-width: 100%; 
-       height: auto;
-       margin-right: 20px; }  
+  justify-content: space-between;
+  width: 100%;
+}
+.navbar svg {
+  width: 50px; /* Ajusta el tamaño según tus necesidades JM*/
+  max-width: 100%;
+  height: auto;
+  margin-right: 20px;
+}
 
 .navbar ul {
-  list-style-type: none; 
+  list-style-type: none;
   padding: 0;
-   display: flex; 
-   margin: 0; 
-   flex-grow: 1; 
-   justify-content: center;
+  display: flex;
+  margin: 0;
+  flex-grow: 1;
+  justify-content: center;
 }
 
 .navbar li {
@@ -68,14 +70,15 @@ header.scrolled {
   color: #ffffff;
   font-weight: bold;
   font-size: 1.2rem;
-  text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   transition: 0.3s;
 }
 
 header.scrolled .navbar a {
-  color: #000;
+  color: #333;
   text-shadow: none;
 }
+
 .slider {
   position: absolute;
   top: 0;
@@ -108,11 +111,19 @@ header.scrolled .navbar a {
   object-fit: cover;
   object-position: center;
 }
+
 main {
   position: relative;
   z-index: 1;
-  padding-top: 80px;
+  padding-top: 140px;
 }
+
+/* Estandarización de secciones */
+section {
+  padding: 4rem 9%; /* Mismo padding para todas las secciones */
+  margin: 0; /* Elimina márgenes adicionales */
+}
+
 .home {
   position: relative;
   min-height: 100vh;
@@ -123,10 +134,11 @@ main {
   overflow: hidden;
   margin-bottom: 0;
 }
+
 .home-content h1 {
   color: #fffefb;
   font-size: 3.5rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-top: 200px;
   line-height: 1.3;
   font-weight: 700;
@@ -138,22 +150,23 @@ main {
   font-weight: 700;
   line-height: 1.3;
   color: #fffefb;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 .services-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 4rem 1rem;
+  padding: 0; /* Elimina el padding interno para usar el de la sección */
 }
 
 .services-title {
   text-align: center;
   font-size: 2.5rem;
   color: #333;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem; /* Reduce el margen inferior */
   position: relative;
   font-weight: 600;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .services-title::after {
@@ -164,7 +177,7 @@ main {
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: #00bcd4;
+  background: #00619a;
   border-radius: 2px;
 }
 
@@ -172,8 +185,7 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 60px;
-  padding: 1.5rem;
-
+  padding: 0; /* Elimina el padding interno para usar el de la sección */
 }
 
 .service-card {
@@ -191,7 +203,7 @@ main {
 }
 
 .service-icon {
-  background: #00bcd4;
+  background: #00619a;
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -205,33 +217,32 @@ main {
 
 .service-title {
   color: #333;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   margin-bottom: 1rem;
   font-weight: 600;
 }
 
 .service-description {
   color: #667;
-  font-size: 1.15rem;
+  font-size: 0.95rem;
   line-height: 1.6;
 }
-/* Contenedor principal de servicios */
+
 .grid-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10rem 9% 2rem; /* Ajustado para coincidir con el espaciado de sections */
-  background-color: #FFFFFF;
+  padding: 0; /* Elimina el padding interno para usar el de la sección */
+  background-color: #ffffff;
 }
 
-/* Estilo del título siguiendo el diseño existente */
 .grid-container h1 {
   text-align: center;
   font-size: 2.5rem;
   color: #333;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem; /* Reduce el margen inferior */
   position: relative;
   font-weight: 600;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .grid-container h1::after {
@@ -242,11 +253,10 @@ main {
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: #00bcd4;
+  background: #00619a;
   border-radius: 2px;
 }
 
-/* Contenedor del grid */
 .grid-layout {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -255,22 +265,25 @@ main {
 
 .grid-item {
   position: relative;
-  aspect-ratio: 1;
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .grid-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: all 0.3s ease;
+  display: block;
 }
 
 .grid-item-large {
   grid-column: span 2;
   grid-row: span 2;
 }
+
 .grid-item:nth-child(2) {
   grid-column: 3;
   grid-row: 1;
@@ -291,6 +304,15 @@ main {
   grid-row: 3;
 }
 
+.grid-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.grid-item:hover img {
+  transform: scale(1.05);
+}
+
 .label {
   position: absolute;
   bottom: 20px;
@@ -302,19 +324,14 @@ main {
   font-family: 'Rubik Variable', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
-}
-
-section {
-  min-height: auto; 
-  
-  padding: 10rem 9% 2rem;
+  z-index: 2;
 }
 
 .social-icons {
   display: flex;
-  align-items: center; /* Centra los íconos verticalmente */
+  align-items: center;
   margin-left: auto;
-  gap: 15px; 
+  gap: 15px;
 }
 
 .social-icons a {
@@ -323,7 +340,7 @@ section {
 }
 
 .social-icons a:hover {
-  color: #00bfff;
+ 
   transform: scale(1.2);
 }
 
@@ -332,56 +349,881 @@ section {
   height: 24px;
 }
 
+.title-container {
+  color: #333;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.title-container h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 5rem; /* Reduce el margen inferior */
+  position: relative;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.title-container h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: #00619a;
+  border-radius: 2px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0; /* Elimina el padding interno para usar el de la sección */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.contact-info {
+  padding: 0; /* Elimina el padding interno para usar el de la sección */
+}
+
+.contact-info h2 {
+  color: #333;
+  margin-bottom: 1.5rem; /* Reduce el margen inferior */
+  font-size: 24px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem; /* Reduce el margen inferior */
+  color: #00619a;
+}
+
+.contact-item i {
+  margin-right: 20px;
+  color: #00619a;
+  font-size: 30px;
+}
+
+.social-links {
+  margin-top: 2rem; /* Reduce el margen superior */
+}
+
+.social-links h3 {
+  margin-bottom: 1rem; /* Reduce el margen inferior */
+  color: #333;
+}
+
+
+
+.form-section {
+  padding: 0; /* Elimina el padding interno para usar el de la sección */
+}
+
+.form-section h2 {
+  color: #333;
+  margin-bottom: 1.5rem; /* Reduce el margen inferior */
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 1rem; /* Reduce el margen inferior */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem; /* Reduce el margen inferior */
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.checkbox-group {
+  margin: 1rem 0; /* Reduce el margen */
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #00619a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-btn:hover {
+  background-color: #00619a;
+}
+
+.map-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0; /* Elimina el padding interno para usar el de la sección */
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 450px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+hr {
+  max-width: 1200px;
+  margin: 1rem auto; /* Reduce el margen */
+  border: none;
+  border-top: 1px solid #ddd;
+}
+.header-main {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menu-btn i {
+  font-size: 20px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.cart {
+  position: relative;
+  font-size: 20px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* ====== Estilos del Menú Inferior ====== */
+.bottom-menu {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #ddd;
+}
+
+.menu-item {
+  text-align: center;
+  color: #00619a;
+  text-decoration: none;
+  font-size: 14px;
+  position: relative;
+}
+
+.menu-item i {
+  font-size: 20px;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.badge-cart {
+  position: absolute;
+  top: 0;
+  right: -10px;
+  background: #00a2ff;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+.badge-wishlist {
+  position: absolute;
+  top: 0;
+  right: 18px;
+  background: #00a2ff;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+.bottom-menu {
+  display:none;
+}
+
+/* Mobile Menu Button */
+.menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.hamburger {
+  font-size: 1.5rem;
+  
+}
+.search-container {
+  display: none; /* Ocultar el contenedor en dispositivos más grandes */
+}
+
+
+
+
+
+
+
+
+
+
+/* Menú desplegable (oculto en pantallas grandes) */
 
 /* Media Queries para teléfonos */
 @media (max-width: 768px) {
+ 
   header {
-      padding: 15px 5%;
+    padding: 15px 5%;
   }
 
   header.scrolled {
-      padding: 10px 5%;
+    padding: 10px 5%;
   }
-  .navbar {
+  .mobile-header {
+    padding: 10px;
+  }
+  .bottom-menu {
     display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Ajusta esto si necesitas cambiar el espacio entre el logo y los enlaces */
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    /* Opcional: para añadir algo de espacio interno */
+    background-color: white;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #ddd;
+    z-index: 1000;
   }
   
+
+  .social-icons {
+    display: none;
+  }
+
+  .logo-container {
+    margin-right: 0; /* Ajusta el margen del logo en móviles */
+  }
+
   .navbar svg {
-    width: 50px; /* Ajusta el tamaño según tus necesidades */
+    width: 35px; /* Ajusta el tamaño del logo en móviles */
     height: auto;
-    margin-right: 20px;
-    /* Puedes añadir más estilos según necesites */
+    margin-right: 10px;
   }
-  
+
   .navbar ul {
-    list-style-type: none;
+    flex-direction: column; /* Cambia la dirección de los enlaces a columna */
+    align-items: flex-start; /* Alinea los elementos al inicio */
     padding: 0;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    flex-grow: 1; /* Permite que los elementos del menú ocupen el espacio restante */ 
-    justify-content: flex-end; /* Alínea los elementos del menú al final del contenedor */
-    margin-left: auto;
   }
 
   .navbar li {
-    margin-left: 20px;
+    margin: 10px 0; /* Ajusta el margen entre los enlaces */
   }
 
-  .about .container {
-      flex-direction: column;
-      align-items: center;
+  .navbar a {
+    font-size: 1rem; /* Ajusta el tamaño de la fuente en móviles */
+  }
+ 
+  .home {
+    padding: 0 5%; /* Reduce el padding en móviles */
   }
 
-  .about .column {
-      margin: 10px 0;
+  .home-content h1 {
+    font-size: 1.6rem; /* Reduce aún más el tamaño de la fuente en móviles */
+    margin-top: 80px; /* Ajusta el margen superior */
+    margin-bottom: 15px; /* Ajusta el margen inferior */
   }
 
-  section {
-      padding: 5rem 5% 2rem;
+  .home-content h2 {
+    font-size: 1.2rem; /* Reduce aún más el tamaño de la fuente en móviles */
+    margin-top: 4rem;
+  }
+  .services-container {
+    padding: 2rem 1rem; /* Ajusta el padding en móviles */
+  }
+
+  .services-title {
+    font-size: 1.8rem; /* Ajusta el tamaño de la fuente en móviles */
+    margin-bottom: 2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Ajusta el grid en móviles */
+    gap: 30px;
+    padding: 1rem;
+  }
+
+  .service-card {
+    padding: 1.5rem 1rem; /* Ajusta el padding de las tarjetas en móviles */
+  }
+
+  .service-title {
+    font-size: 1rem; /* Ajusta el tamaño de la fuente en móviles */
+  }
+
+  .service-description {
+    font-size: 0.85rem; /* Ajusta el tamaño de la fuente en móviles */
+  }
+
+   .grid-container {
+        padding: 4rem 5% 2rem;
+    }
+
+    .grid-container h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .grid-layout {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .grid-item {
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+
+    .grid-item-large {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+    }
+
+    /* Ajustes específicos para imágenes en móvil */
+    .grid-item-large img {
+        height: auto;
+        aspect-ratio: 3/4;
+    }
+
+    .grid-item:not(.grid-item-large) img {
+        height: auto;
+        aspect-ratio: 4/3;
+    }
+
+    .label {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+    .container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    .contact-info, .form-section {
+      padding: 1rem;
+    }
+  
+    .map-container iframe {
+      height: 300px;
+    }
+    .menu-btn {
+      display: inline-block;
+    }
+  
+   
+  
+   
+}
+/* Menú desplegable (oculto en pantallas grandes) */
+
+.menu-container {
+  display: none; /* Oculta el menú desplegable por defecto */
+}
+
+.menu-toggle {
+  display: none; /* Oculta el checkbox */
+}
+
+.menu-icon {
+  display: none; /* Oculta el ícono de hamburguesa por defecto */
+}
+
+
+@media screen and (max-width: 480px) {
+   .navbar ul.nav-links {
+    display: none; /* Oculta los enlaces de navegación en móviles */
+  }
+
+  .nav-links {
+    display: none; /* Oculta los enlaces de navegación en móviles */
+  }
+
+  .menu-container {
+    display: block; /* Muestra el contenedor del menú desplegable */
+  }
+
+  .menu-icon {
+    display: block; /* Muestra el ícono de hamburguesa en móviles */
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+  }
+
+  .hamburger {
+    width: 30px;
+    height: 4px;
+    background-color: #333;
+    position: relative;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: #333;
+    left: 0;
+    transition: transform 0.3s ease-in-out; /* Transición para el ícono de hamburguesa */
+  }
+
+  .hamburger::before {
+    top: -10px;
+  }
+
+  .hamburger::after {
+    top: 10px;
+  }
+
+  .menu {
+    background-color: #fff;
+    width: 250px;
+    height: calc(100vh - 60px); /* Altura máxima del menú */
+    overflow-y: auto; /* Permite el scroll si el contenido es muy largo */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: fixed; /* Fija el menú en la pantalla */
+    top: 0px; /* Coloca el menú justo debajo del header */
+    left: 0;
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+    transform: translateX(100%); /* Oculta el menú fuera de la pantalla */
+    opacity: 0; /* Hace el menú transparente */
+    visibility: hidden; /* Oculta el menú sin ocupar espacio */
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.5s; /* Transición suave */
+  }
+
+  /* Forma X del menú */
+  
+  /* Muestra el menú cuando el checkbox está activo */
+  .menu-toggle:checked ~ .menu {
+    transform: translateX(0); /* Muestra el menú deslizándolo hacia la izquierda */
+    opacity: 1; /* Hace el menú visible */
+    visibility: visible; /* Hace el menú visible en el flujo del documento */
+  }
+
+  .menu-header {
+    margin-bottom: 20px;
+  }
+
+  .search-input {
+    width: 90%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .menu-categories {
+    margin-top: 20px;
+  }
+
+  .menu-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .menu-categories ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .menu-categories li {
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd; /* Línea de separación */
+  }
+
+  .menu-categories li:last-child {
+    border-bottom: none; /* Eliminar línea en el último elemento */
+  }
+
+  .menu-categories a {
+    text-decoration: none;
+    color: #333; /* Color fijo para los enlaces del menú */
+    font-size: 16px;
+    text-shadow: none;
+  }
+  .menu-categories a:hover {
+    color: #0066cc;
+  }
+  .navbar a {
+    color: #333; /* Color inicial para los enlaces del header */
+    text-shadow: none;
+  }
+  
+  .menu li {
+    border-bottom: 1px solid #444;
+  }
+
+  .menu li:last-child {
+    border-bottom: none;
   }
 }
+
+/* Store*/
+:root {
+  --color-primary: #000000;
+  --color-background: #ffffff;
+  --color-text: #333333;
+  --color-gray: #666666;
+  --max-width: 1200px;
+  --spacing-unit: 1rem;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.header {
+  padding: 1rem 2rem;
+  background: var(--color-background);
+  border-bottom: 1px solid #eee;
+}
+
+
+*, :before, :after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+
+.container-products {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1320px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo a {
+  text-decoration: none;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+
+
+
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1320px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition-property: transform;
+}
+
+.swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+
+
+.banner-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-gray);
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.banner-pagination-bullet-active {
+  opacity: 1;
+}
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* Se ajusta al diseño del segundo bloque */
+  height: auto; /* Se ajusta dinámicamente al contenido */
+  min-height: 400px; /* Se asegura un tamaño mínimo */
+  background: #f8f8f8;
+  margin: 0 auto; /* Centra el contenedor */
+  padding: 2rem; /* Añade espacio interno */
+}
+
+
+.container-principal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 40%;
+  text-align: left;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color:#333;
+}
+
+.shop-now-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #00619a;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.swiper {
+  flex: 1;
+  max-width: 50%;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-gray);
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.dot.active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.collections {
+  padding: 4rem 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.collection-card {
+  text-align: center;
+  text-decoration: none; /* Elimina el subrayado */
+  color: inherit; /* Mantiene el color original del texto */
+  display: block;
+}
+
+.collection-card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.collection-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.collection-card p {
+  color: var(--color-gray);
+}
+.featured-products {
+  padding: 4rem 0;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.product-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.product-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color:#333;
+
+}
+
+.product-price {
+  font-weight: bold;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #6b7280;
+  font-weight: normal;
+  margin-left: 0.5rem;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px; /* Esto asegura que el contenedor ocupe toda la altura de la ventana */
+}
+.view-all-btn {
+  text-align: center;
+  padding: 0.5rem 1rem;  /* Ajuste de padding para un tamaño más pequeño */
+  font-size: 1rem;  /* Ajuste de tamaño de fuente */
+  line-height: 1.5rem;  /* Ajuste de line-height */
+  text-decoration: none;
+  background-color: #00619a;
+  color: rgb(255, 255, 255, var(--tw-text-opacity, 1));
+  border-radius: 0.375rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  min-width: 150px; /* Especifica un ancho mínimo */
+  max-width: 200px; /* Especifica un ancho máximo */
+  margin: 0 auto;  /* Centrado del botón */
+}
+
+

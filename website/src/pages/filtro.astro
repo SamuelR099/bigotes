@@ -1,0 +1,362 @@
+---
+import HeaderStore from "../components/HeaderStore.astro";
+import "../styles/style.css";
+
+---
+<HeaderStore/>
+<section class="store-product-listing" id="tienda">
+  <section class="store-product-listing" id="tienda">
+    <!-- Filtros -->
+    <div class="store-filter-container">
+      <!-- Price Range -->
+      <div class="store-filter-section">
+        <h4>Select Price Range</h4>
+        <div class="store-price-range">
+          <span class="store-price-value">$0 BDT</span>
+          <input type="range" id="store-price-slider" class="store-slider" min="0" max="1000" value="0">
+          <span>$1000 BDT</span>
+        </div>
+        <button id="store-apply-price-filter" class="store-apply-filter-btn">Apply Filter</button>
+      </div>
+
+      <div class="store-filter-section">
+        <h4>Product Categories</h4>
+        <ul class="store-filter-list">
+          <li>Featured Products (7)</li>
+          <li>Luminaire Essentials (3)</li>
+          <li>Luxe Luminaires (1)</li>
+          <li>Radiant Stands (2)</li>
+          <li>Skyward Elegance (2)</li>
+          <li>Suspended Splendor (1)</li>
+          <li>Task Illumination (0)</li>
+        </ul>
+      </div>
+
+      <!-- Brands -->
+      <div class="store-filter-section">
+        <h4>Brands</h4>
+        <ul class="store-filter-list">
+          <li><input type="checkbox"> Artisan Globe Lamps (2)</li>
+          <li><input type="checkbox"> Urban Lights Emporium (3)</li>
+          <li><input type="checkbox"> Ecoglow Designs (1)</li>
+          <li><input type="checkbox"> Nextcart Nexus (2)</li>
+          <li><input type="checkbox"> Company 123 (4)</li>
+          <li><input type="checkbox"> Home Decor (0)</li>
+        </ul>
+      </div>
+
+      <div class="store-filter-section">
+        <h4>Tags</h4>
+        <div class="store-tags">
+          <div class="store-tag">Ambient</div>
+          <div class="store-tag">Elegant</div>
+          <div class="store-tag">Modern</div>
+          <div class="store-tag">Outdoor</div>
+          <div class="store-tag">Spotlight</div>
+          <div class="store-tag">Shine</div>
+          <div class="store-tag">Style</div>
+          <div class="store-tag">Cotton</div>
+          <div class="store-tag">Glowing</div>
+          <div class="store-tag">Wireless</div>
+          <div class="store-tag">Bedroom</div>
+          <div class="store-tag">Copper</div>
+          <div class="store-tag">Shedding</div>
+          <div class="store-tag">Wood</div>
+          <div class="store-tag">Glow</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="store-product-grid" id="store-product-grid">
+      <div class="store-product-item" data-price="99" data-category="featured" data-brand="artisan" data-tags="ambient,modern">
+        <a href="/product/1">
+          <img src="/images/luz.jpg" alt="Mini Desk Lamp">
+        </a>
+        <h4>Mini Desk Lamp</h4>
+        <p>$ 99.0 BDT</p>
+      </div>
+      <div class="store-product-item" data-price="345" data-category="luxury" data-brand="urban" data-tags="elegant,outdoor">
+        <a href="/product/2">
+          <img src="/images/lampi.jpg" alt="Dome Pendant">
+        </a>
+        <h4>Dome Pendant</h4>
+        <p>$ 345.0 BDT</p>
+      </div>
+      
+    </div>
+  </section>
+</section>
+<style>
+/* Contenedor principal */
+/* ======== Contenedor Principal ======== */
+.store-product-listing {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  
+  padding-top: 50px;
+
+}
+
+/* ======== Barra de Filtros ======== */
+.store-filter-container {
+  width: 300px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 20px;
+  
+}
+
+.store-filter-container h4 {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.store-filter-section {
+  margin-bottom: 10px;
+}
+
+.store-filter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+}
+
+.store-filter-list li {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.store-filter-list li input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* ======== Tags ======== */
+.store-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.store-tag {
+  padding: 8px 14px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.store-tag:hover {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* ======== Contenedor de Productos ======== */
+.store-product-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Mantiene los elementos en fila */
+  align-self: flex-start;
+  gap: 20px;
+  justify-content: start;
+  max-width: 900px;
+}
+.store-product-item.hidden {
+  display: none ;
+}
+
+
+.store-product-item {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  overflow: hidden;
+  max-width: 250px;
+ }
+
+.store-product-item img {
+  width: 100%; /* Ocupar todo el contenedor */
+  height: 180px; /* Altura fija para uniformidad */
+  object-fit: cover; /* Evita distorsión y recorta si es necesario */
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* Efecto suave */
+}
+
+.store-product-item img:hover {
+  transform: scale(1.1); /* Pequeño zoom al pasar el mouse */
+}
+.store-product-item h4 {
+  font-size: 1.1em;
+  margin: 10px 0;
+}
+
+.store-product-item p {
+  font-size: 1em;
+  color: #555;
+}
+
+/* ======== Efectos Hover ======== */
+.store-product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ======== Rango de Precio ======== */
+.store-price-range {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.store-slider {
+  width: 100%;
+}
+
+.store-price-value {
+  min-width: 80px;
+}
+
+/* ======== Botón "Apply Filter" ======== */
+#store-apply-price-filter,
+.store-apply-filter-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#store-apply-price-filter:hover,
+.store-apply-filter-btn:hover {
+  background-color: #0056b3;
+}
+
+
+
+  </style>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const priceSlider = document.getElementById('store-price-slider') as HTMLInputElement;
+    const priceValue = document.querySelector('.store-price-value') as HTMLElement;
+    const applyFilterButton = document.getElementById('store-apply-price-filter') as HTMLButtonElement;
+    const productGrid = document.getElementById('store-product-grid') as HTMLElement;
+    const tags = document.querySelectorAll('.store-tag') as NodeListOf<HTMLElement>;
+    const categoryItems = document.querySelectorAll('.store-filter-list li') as NodeListOf<HTMLElement>;
+    const brandItems = document.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
+  
+    let selectedTags: string[] = [];
+    let selectedCategories: string[] = [];
+    let selectedBrands: string[] = [];
+    let currentPrice = 1000; // Cambié el valor máximo a 1000
+  
+    // Actualizar el valor del precio en tiempo real
+    if (priceSlider) {
+      priceSlider.max = "1000"; // 🔹 Limité el slider a 1000
+      priceSlider.addEventListener('input', () => {
+        currentPrice = parseInt(priceSlider.value);
+        if (priceValue) {
+          priceValue.textContent = `$${currentPrice} BDT`;
+        }
+      });
+    }
+  
+    // Aplicar filtro de precio
+    applyFilterButton?.addEventListener('click', () => {
+      filterProducts();
+    });
+  
+    // Manejo de selección de etiquetas
+    tags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        const tagValue = tag.textContent?.toLowerCase().trim() || '';
+        tag.classList.toggle('active');
+  
+        if (selectedTags.includes(tagValue)) {
+          selectedTags = selectedTags.filter(t => t !== tagValue);
+        } else {
+          selectedTags.push(tagValue);
+        }
+  
+        filterProducts();
+      });
+    });
+  
+    // Manejo de selección de categorías
+    categoryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const category = item.textContent?.trim().toLowerCase() || '';
+        item.classList.toggle('active');
+  
+        if (selectedCategories.includes(category)) {
+          selectedCategories = selectedCategories.filter(c => c !== category);
+        } else {
+          selectedCategories.push(category);
+        }
+  
+        filterProducts();
+      });
+    });
+  
+    // Manejo de selección de marcas
+    brandItems.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        const brand = checkbox.parentElement?.textContent?.split('(')[0].trim().toLowerCase() || '';
+  
+        if (checkbox.checked) {
+          selectedBrands.push(brand);
+        } else {
+          selectedBrands = selectedBrands.filter(b => b !== brand);
+        }
+  
+        filterProducts();
+      });
+    });
+  
+    // Función para filtrar productos
+    function filterProducts() {
+      const products = document.querySelectorAll('.store-product-item') as NodeListOf<HTMLElement>;
+  
+      products.forEach(product => {
+        const price = parseInt(product.dataset.price || '0');
+        const productCategory = product.dataset.category?.toLowerCase().trim() || '';
+        const productBrand = product.dataset.brand?.toLowerCase().trim() || '';
+        const productTags = (product.dataset.tags || '').toLowerCase().split(',').map(tag => tag.trim());
+  
+        // 🔹 FIX: Si el precio es 0, se muestran todos los productos
+        const matchesPrice = currentPrice === 0 || price <= currentPrice;
+        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(productCategory);
+        const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(productBrand);
+        const matchesTags = selectedTags.length === 0 || selectedTags.some(tag => productTags.includes(tag));
+  
+        if (matchesPrice && matchesCategory && matchesBrand && matchesTags) {
+          product.classList.remove('hidden');
+        } else {
+          product.classList.add('hidden');
+        }
+      });
+    }
+  
+    filterProducts();
+  });
+  </script>
+  

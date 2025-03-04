@@ -1,0 +1,89 @@
+---
+// index.astro
+import Layout from '../layouts/Layout.astro';
+import '../styles/style.css';
+import Header from '../components/Header.astro';
+import HeaderStore from "../components/HeaderStore.astro";
+---
+
+<HeaderStore/>
+
+<Layout>
+
+    
+    <section class="hero">
+        <div class="container-principal">
+            <div class="hero-content">
+                <p class="hero-subtitle">Work light, LED, white</p>
+                <h1 class="hero-title">Styles Accessories & New Table Lamp</h1>
+                <a href="/shop" class="shop-now-btn">Shop Now</a>
+            </div>
+            <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="/images/lampe.jpg" alt="Lamp collection 1" class="hero-image">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/images/lampe.jpg" alt="Lamp collection 2" class="hero-image">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/images/lampo.jpg" alt="Lamp collection 3" class="hero-image">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collections">
+        <h2 class="section-title">Collections</h2>
+        <div class="collections-grid">
+            <a href="/filtro" class="collection-card">
+                <img src="/images/lampe.jpg" alt="Featured Products" />
+                <h3>Featured Products</h3>
+                <p>8 items</p>
+            </a>
+            <a href="/filtro" class="collection-card">
+                <img src="/images/lampi.jpg" alt="Luminaire Essentials" />
+                <h3>Luminaire Essentials</h3>
+                <p>3 items</p>
+            </a>
+            <a href="/filtro" class="collection-card">
+                <img src="/images/lampo.jpg" alt="Luxe Luminaires" />
+                <h3>Luxe Luminaires</h3>
+                <p>1 item</p>
+            </a>
+        </div>
+    </section>
+    
+    <section class="featured-products">
+        <div class="container-products">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="/images/llanta.png" alt="Nourison 23" class="product-image" />
+                    <h3 class="product-title">Nourison 23</h3>
+                    <p class="product-price">$ 600.0 BDT <span class="original-price">$ 670.0 BDT</span></p>
+                </div>
+                <div class="product-card">
+                    <img src="/images/embrague.jpg" alt="Single Pendant" class="product-image" />
+                    <h3 class="product-title">Single Pendant</h3>
+                    <p class="product-price">$ 4200.0 BDT <span class="original-price">$ 5000.0 BDT</span></p>
+                </div>
+                <div class="product-card">
+                    <img src="/images/motor.jpg" alt="Light Drum Pendant" class="product-image" />
+                    <h3 class="product-title">Light Drum Pendant</h3>
+                    <p class="product-price">$ 2567.0 BDT</p>
+                </div>
+                <div class="product-card">
+                    <img src="/images/pastillas.jpg" alt="Silk Drum Lamp Shade" class="product-image" />
+                    <h3 class="product-title">Silk Drum Lamp Shade</h3>
+                    <p class="product-price">$ 3200.0 BDT <span class="original-price">$ 3300.0 BDT</span></p>
+                </div>
+            </div>
+            <div class="button-container">
+                <a href="/filtro" class="view-all-btn">+ See All Products</a> <!-- Enlace a la nueva página -->
+            </div>
+        </div>
+    </section>
+</Layout>

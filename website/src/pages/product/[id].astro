@@ -1,0 +1,356 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HeaderStore from '../../components/HeaderStore.astro';
+import Instagram from '../../components/icons/Instagram.astro';
+import Facebook from '../../components/icons/Facebook.astro';
+
+export function getStaticPaths() {
+  const products = [
+    {
+      id: "1",
+      name: "Mini Desk Lamp",
+      price: "99.0 BDT",
+      originalPrice: "100 BDT",
+      color: "Select One",
+      size: "Select One",
+      delivery: "Est. Delivery between 0 - 3 days",
+      payment: "VISA",
+      tags: ["Ambient", "Elegant", "Modern"],
+      image: "/images/luz.jpg",
+      description: "Suspendisse ou ligula. Sed consequat, loo egot bibendum sodales, augue velit curesse nunc, quis gravida magna mia a libero. Nullam cursus lacrimo erat. Nam at tender in tellus intendum sagittis. Phaselius magna."
+    }
+  ];
+
+  return products.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+
+if (!product) {
+  throw new Error("⚠️ Product not found");
+}
+---
+<HeaderStore/>
+<Layout>
+  <div class="product-container">
+    <div class="product-image">
+      <div class="zoom iiz mb-6 border border-border dark:border-light rounded-md" style="width: 722px;">
+        <img src={product.image} alt={product.name} class="zoom-image iiz__img" id="productImage" />
+      </div>
+      <!-- Contenedor de la imagen en miniatura -->
+      <div class="thumbnail-container">
+        <img src={product.image} alt={product.name} class="thumbnail-image" />
+      </div>
+    </div>
+    
+    <div class="product-details">
+      <h1>{product.name}</h1>
+      <p class="price">
+        <span>{product.price}</span>
+        <del>{product.originalPrice}</del>
+      </p>
+      <form>
+        <label for="color">Color:</label>
+        <select id="color" name="color">
+          <option value="">{product.color}</option>
+        </select>
+        <label for="size">Size:</label>
+        <select id="size" name="size">
+          <option value="">{product.size}</option>
+        </select>
+        <button type="submit">Add To Cart</button>
+      </form>
+      <p class="delivery">{product.delivery}</p>
+      <p class="payment">Payment: {product.payment}</p>
+      <div class="share">
+        <p>Share:</p>
+        <div class="share-icons">
+          <span>
+            <a href={`https://www.instagram.com`} target="_blank">
+              <Instagram />
+            </a>
+          </span>
+          <span>
+           
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://tudominio.com" target="_blank">
+              <Facebook />
+            </a>
+            
+          </span>
+        </div>
+      </div>
+      <div class="tags">
+        <p>Tags:</p>
+        <ul>
+          {product.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      </div>
+     
+    </div>
+  </div>
+
+
+<!-- Contenedor de la descripción -->
+<div class="description-wrapper">
+  <div class="description-container">
+      <h2 class="description-title">Description</h2>
+      <p>{product.description}</p>
+  </div>
+</div>
+
+</Layout>
+
+<style>
+.product-container {
+    display: flex;
+    
+    gap: 10px;
+    align-items: flex-start;
+    max-width: 1300px;
+    margin: 40px auto 40px ;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+    padding-bottom: 137px;
+
+}
+
+.product-image {
+    position: 40%;
+    
+}
+
+.product-image img {
+    width: 350px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+    margin-left: 0px;
+  
+}
+
+.thumbnail-container {
+  
+    width: 100px; 
+    height: 100px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    align-self: flex-start; 
+}
+
+.thumbnail-image {
+  max-width: 100%;
+    height: auto;
+    object-fit: scale-down;
+    display: block;
+    background-color: #f9f9f9;
+    vertical-align: middle;
+    border: 2px solid #000; /* Negro */
+    border-radius: 5px;
+    
+}
+
+.product-details {
+    max-width: 500px;
+    
+    padding-right: 205px;
+
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+del {
+    color: gray;
+    margin-left: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+select, button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background: black;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delivery {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.payment {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.share {
+    margin-bottom: 15px;
+}
+.share-icons {
+    display: flex;
+    gap: 16px; /* Mayor separación entre íconos */
+    align-items: center;
+    justify-content: flex-start; /* Alineados a la izquierda */
+}
+.share-icons a {
+    display: flex;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: .375rem;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(234 234 234 / var(--tw-border-opacity, 1));
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+    padding: .25rem;
+    text-align: center;
+    line-height: 2.25rem;
+    --tw-text-opacity: 1;
+    color: rgb(102 102 102 / var(--tw-text-opacity, 1)); /* Color gris oscuro */
+    transition-duration: .3s;
+}
+
+/* 👀 Resalta el icono al pasar el mouse */
+.share-icons a:hover {
+    background-color: rgb(234 234 234 / var(--tw-bg-opacity, 1)); /* Gris claro */
+}
+
+/* 🌟 Ajuste especial para Instagram (hace que sea visible en fondo blanco) */
+.share-icons a svg {
+    fill: black; /* O cualquier color visible */
+}
+
+
+.tags ul {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.tags li {
+    background: #eee;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.description-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: -20px;
+}
+
+.description-container {
+    max-width: 800px; /* Ajusta según necesites */
+    width: 100%;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    transition: all 0.3s ease-in-out;
+}
+.description-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align:start; /* Centrar el título */
+    color: #333; /* Color oscuro para mejor contraste */
+}
+
+
+.zoom {
+    position: relative;
+    width: 722px;
+    height: 623px;
+    
+    overflow: hidden;
+    cursor: zoom-in;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e5e7eb;
+}
+
+.zoom-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+}
+
+.zoom:hover .zoom-image {
+    transform: scale(1.5);
+    cursor: zoom-out;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const image = document.querySelector("#productImage") as HTMLImageElement | null;
+
+  if (!image) {
+    console.error("❌ Error: La imagen no fue encontrada.");
+    return;
+  }
+
+  const zoomFactor = 1.5; // Factor de zoom (ajusta según sea necesario)
+
+  image.addEventListener("mousemove", (event: MouseEvent) => {  // Usa MouseEvent en lugar de Event
+    const rect = image.getBoundingClientRect();
+    const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
+    const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
+
+    // Establecer el punto de origen del zoom
+    image.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+    image.style.transform = `scale(${zoomFactor})`;
+  });
+
+  image.addEventListener("mouseleave", () => {
+    image.style.transform = "scale(1)"; // Restablecer el zoom al salir
+  });
+});
+
+
+</script>
+  

@@ -10,6 +10,9 @@ body {
   height: 100%;
   font-family: 'Rubik Variable', sans-serif;
   background-color: #fffefb;
+ 
+  line-height: 1.5;
+  color: var(--color-text);
 }
 
 header {
@@ -578,6 +581,16 @@ hr {
 .search-container {
   display: none; /* Ocultar el contenedor en dispositivos más grandes */
 }
+
+
+
+
+
+
+
+
+
+
 /* Menú desplegable (oculto en pantallas grandes) */
 
 /* Media Queries para teléfonos */

@@ -3,10 +3,11 @@ import JetBrains from "./icons/JetBrains.astro"
 import Whatsapp from "./icons/Whatsapp.astro"
 import Usuario from "./icons/Usuario.astro"
 import MenuD from "./MenuD.astro"
-const { class: className } = Astro.props; // Recibe la clase como prop
+
+const { headerClass = ""} = Astro.props; // Recibe la clase como prop
 ---
 
-<header class={`navbar ${className || ''}`}>
+<header class={`navbar ${headerClass }`}>
   <nav class="navbar">
     <div class="logo-container">
       <a href="/#inicio">
@@ -17,10 +18,10 @@ const { class: className } = Astro.props; // Recibe la clase como prop
     <ul class="nav-links">
       
       <li><a href='/#inicio'>Inicio</a></li>
-      <li><a href='/#tienda'>Tienda</a></li>
+      <li><a href='/store'>Tienda</a></li>
       <li><a href='/#servicios'>Servicios</a></li>
       <li><a href='/#productos'>Productos</a></li>
-      <li><a href='/#contactenos'>Contáctenos</a></li>
+      <li><a href='/#contactenos'>Contactenos</a></li>
     </ul>
 
     
@@ -30,7 +31,7 @@ const { class: className } = Astro.props; // Recibe la clase como prop
           <Whatsapp />
       </span>
       </a>
-      <a href="#" target="_blank">
+      <a href="/Login" target="_blank">
         <Usuario />
       </a>
     </div>

@@ -3,29 +3,30 @@
 
 import '@fontsource-variable/rubik';
 import Header from '../components/Header.astro';
----
+import Footer from '../components/Footer.astro';
+import '../styles/style2.css';
+import '../styles/style.css';
 
+const { headerClass = "" } = Astro.props;
+---
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embragues</title>
-    <link rel="stylesheet" href="/styles/style.css">
-
-
+  <meta charset="UTF-8"> <!-- Aquí se configura UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Tienda</title>
 </head>
+
 <body>
+    <Header headerClass={headerClass} />
     
-
-    <main>
+  
         <slot />
-    </main>
     
-
-    <footer class="footer">
-        <!-- Add footer content here -->
-    </footer>
+    
+    
+</body>
+</html>
 
     <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script>
@@ -48,5 +49,4 @@ import Header from '../components/Header.astro';
             });
         });
     </script>
-</body>
-</html>
+

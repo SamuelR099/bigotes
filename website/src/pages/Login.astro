@@ -1,22 +1,25 @@
 ---
 
 import Menu from "../components/Menu.astro"
-import Header from "../components/Header.astro" 
-import Footer from "../components/Footer.astro"
+import Header from "../components/Header.astro"
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Layout from "../layouts/Layout.astro";
+import "../styles/style2.css";
+import Footer from "../components/Footer.astro";
 ---   
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/styles/style.css">
+  <meta charset="UTF-8"> <!-- Aquí se configura UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
 </head>
+
 <body>
-    <Menu />
-    <Header class="wishlist-header" /> 
+  <Menu />
+  <Layout headerClass="login-header" /> 
+    
+  
     <header class="headerd">
         <div class="bannerr">
             <h1>Mi Cuenta</h1>
@@ -79,13 +82,13 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
         </div>
     </div>
     <main>
-    <Footer/>
+    <Footer>
     </main>
+  </Layout>
 </body>
-</html>
-<style scoped>
 
-            
+<style scoped>
+         
 .headerd {
 background: url('/images/piezas.jpg') no-repeat center center/cover;
 color: white;
@@ -147,6 +150,7 @@ font-weight: bold;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   width: 700px; /* Hace que el formulario no se deforme */
   max-width: 120%; 
+  margin-top: 35px;
 }
 
 form {

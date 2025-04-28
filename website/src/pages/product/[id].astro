@@ -1,128 +1,152 @@
 ---
-import Layout from '../../layouts/Layout.astro';
 import HeaderStore from '../../components/HeaderStore.astro';
 import Instagram from '../../components/icons/Instagram.astro';
 import Facebook from '../../components/icons/Facebook.astro';
+import Footer from '../../components/Footer.astro';
+import Layout from '../../layouts/Layout.astro';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import MenuD from '../../components/MenuD.astro';
+import Menu from '../../components/Menu.astro';
 
-export function getStaticPaths() {
-  const products = [
-    {
-      id: "1",
-      name: "Mini Desk Lamp",
-      price: "99.0 BDT",
-      originalPrice: "100 BDT",
-      color: "Select One",
-      size: "Select One",
-      delivery: "Est. Delivery between 0 - 3 days",
-      payment: "VISA",
-      tags: ["Ambient", "Elegant", "Modern"],
-      image: "/images/luz.jpg",
-      description: "Suspendisse ou ligula. Sed consequat, loo egot bibendum sodales, augue velit curesse nunc, quis gravida magna mia a libero. Nullam cursus lacrimo erat. Nam at tender in tellus intendum sagittis. Phaselius magna."
-    }
-  ];
 
-  return products.map((product) => ({
-    params: { id: product.id },
-    props: { product },
-  }));
+interface Marca {
+  idMarca: number;
+  nombreMarca: string;
+  stock: number;
 }
 
-const { product } = Astro.props;
+interface Producto {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  imagenes: string[];
+  marcas: Marca[];
+}
+
+export async function getStaticPaths() {
+  try {
+    const res = await fetch('http://localhost:8080/productos');
+    const productos: Producto[] = await res.json();
+
+    return productos.map((product) => ({
+      params: { id: product.id.toString() },
+      props: { product }
+    }));
+  } catch (error) {
+    console.error("❌ Error al obtener productos:", error);
+    return [];
+  }
+}
+
+const { product }: { product: Producto } = Astro.props;
 
 if (!product) {
-  throw new Error("⚠️ Product not found");
+  throw new Error("⚠️ Producto no encontrado");
 }
+const totalStock = product.marcas.reduce((acc, marca) => acc + marca.stock, 0);
 ---
-<HeaderStore/>
-<Layout>
+
+
+<body>
+  <main>
+   
+      <MenuD class="Product-menu"/>
+      <Menu/>
+  
+      <HeaderStore/>
+      <Layout headerClass="Product-header"/>
   <div class="product-container">
     <div class="product-image">
-      <div class="zoom iiz mb-6 border border-border dark:border-light rounded-md" style="width: 722px;">
-        <img src={product.image} alt={product.name} class="zoom-image iiz__img" id="productImage" />
+      <div class="zoom iiz mb-6 border border-border dark:border-light rounded-md">
+        <img src={product.imagenes[0]} alt={product.nombre} class="zoom-image" id="productImage" />
       </div>
-      <!-- Contenedor de la imagen en miniatura -->
       <div class="thumbnail-container">
-        <img src={product.image} alt={product.name} class="thumbnail-image" />
+        <img src={product.imagenes[0]} alt={product.nombre} class="thumbnail-image" />
       </div>
     </div>
     
     <div class="product-details">
-      <h1>{product.name}</h1>
+      <h1>{product.nombre}</h1>
       <p class="price">
-        <span>{product.price}</span>
-        <del>{product.originalPrice}</del>
+        Precio: <span>${product.precio}</span>
       </p>
+    
+      <p class="product-stock">
+        Stock: <span>{totalStock}</span>
+      </p>
+      
       <form>
-        <label for="color">Color:</label>
-        <select id="color" name="color">
-          <option value="">{product.color}</option>
-        </select>
+        <label for="marca">Marca:</label>
+        <select id="marca" name="marca" data-marcas={JSON.stringify(product.marcas)}>
+                  {product.marcas.map((marca) => (
+                    <option value={marca.idMarca}>{marca.nombreMarca}_Stock:{marca.stock}</option>
+                  ))}
+                </select>
         <label for="size">Size:</label>
         <select id="size" name="size">
-          <option value="">{product.size}</option>
+          <option value="">{}</option>
         </select>
         <button type="submit">Add To Cart</button>
       </form>
-      <p class="delivery">{product.delivery}</p>
-      <p class="payment">Payment: {product.payment}</p>
+      <p class="delivery">{}</p>
+      <p class="payment">Payment: {}</p>
       <div class="share">
         <p>Share:</p>
         <div class="share-icons">
           <span>
-            <a href={`https://www.instagram.com`} target="_blank">
+            <a href="https://www.instagram.com" target="_blank">
               <Instagram />
             </a>
           </span>
           <span>
-           
             <a href="https://www.facebook.com/sharer/sharer.php?u=https://tudominio.com" target="_blank">
               <Facebook />
             </a>
-            
           </span>
         </div>
       </div>
       <div class="tags">
         <p>Tags:</p>
         <ul>
-          {product.tags.map((tag) => <li>{tag}</li>)}
+         
         </ul>
       </div>
-     
     </div>
   </div>
 
-
-<!-- Contenedor de la descripción -->
-<div class="description-wrapper">
-  <div class="description-container">
+  <div class="description-wrapper">
+    <div class="description-container">
       <h2 class="description-title">Description</h2>
-      <p>{product.description}</p>
+      <p>{product.descripcion}</p>
+    </div>
   </div>
-</div>
-
+    <Footer/> </main>
+    <body/>
 </Layout>
 
+
+
 <style>
+
 .product-container {
-    display: flex;
-    
+  display: flex;
     gap: 10px;
     align-items: flex-start;
     max-width: 1300px;
-    margin: 40px auto 40px ;
-    padding: 20px;
+    margin: 40px auto;
+    padding: 20px 20px 137px;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px #0000001a;
     
-    padding-bottom: 137px;
-
 }
 
+
+
 .product-image {
-    position: 40%;
-    
+   
+    position: relative;
 }
 
 .product-image img {
@@ -131,48 +155,56 @@ if (!product) {
     transition: transform 0.3s ease;
     cursor: zoom-in;
     margin-left: 0px;
+     position: relative; /* Asegura que los elementos hijos con position: absolute se ubiquen dentro de él */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   
 }
 
 .thumbnail-container {
   
-    width: 100px; 
-    height: 100px;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    align-self: flex-start; 
+  position: absolute;
+  bottom: -260px;
+  left: 15px;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #0000001a;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .thumbnail-image {
-  max-width: 100%;
-    height: auto;
-    object-fit: scale-down;
-    display: block;
-    background-color: #f9f9f9;
-    vertical-align: middle;
-    border: 2px solid #000; /* Negro */
-    border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
     
 }
 
 .product-details {
-    max-width: 500px;
-    
-    padding-right: 205px;
-
+   max-width: 516px;
+  padding-right: 181px;
 }
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 del {
@@ -295,7 +327,6 @@ button {
 
 .zoom {
     position: relative;
-    width: 722px;
     height: 623px;
     
     overflow: hidden;
@@ -311,18 +342,97 @@ button {
 }
 
 .zoom-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    transition: transform 0.3s ease;
-    transform-origin: center center;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* mantiene proporción sin recortes */
+  display: block;
+  transition: transform 0.3s ease;
+  transform-origin: center center;
 }
 
 .zoom:hover .zoom-image {
     transform: scale(1.5);
     cursor: zoom-out;
 }
+
+@media (max-width: 768px) {
+/* Para pantallas medianas (tablets) */
+ .product-container {
+        flex-direction: column;
+        padding: 15px;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .product-image {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .product-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .thumbnail-container {
+        display: none;
+    }
+
+    .product-details {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .price {
+        font-size: 1.4rem;
+    }
+
+    form {
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    select, button {
+        padding: 12px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    button {
+        background: black;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .share-icons {
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .description-container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .zoom {
+        width: 100%;
+        height: auto;
+    }
+
+    .zoom img {
+        max-width: 100%;
+        height: auto;
+    }
+  }
 </style>
 
 <script>
@@ -353,4 +463,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 </script>
-  
+
+
+
+<script>
+  interface Marca {
+    idMarca: number;
+    nombreMarca: string;
+    stock: number;
+  }
+
+  const marcaSelect = document.querySelector('#marca') as HTMLSelectElement;
+  const stockElement = document.querySelector('#stock') as HTMLElement;
+
+  const marcas = JSON.parse(marcaSelect.dataset.marcas || '[]') as Marca[];
+
+  function updateStock() {
+    const selectedId = parseInt(marcaSelect.value);
+    const selectedMarca = marcas.find((m: Marca) => m.idMarca === selectedId);
+    if (selectedMarca) {
+      stockElement.textContent = selectedMarca.stock.toString();
+    }
+  }
+
+  marcaSelect?.addEventListener('change', updateStock);
+  window.addEventListener('DOMContentLoaded', updateStock);
+</script>

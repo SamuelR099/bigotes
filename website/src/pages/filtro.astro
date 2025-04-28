@@ -1,9 +1,39 @@
 ---
 import HeaderStore from "../components/HeaderStore.astro";
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
 import "../styles/style.css";
+import MenuD from "../components/MenuD.astro";
+import Menu from "../components/Menu.astro";
+const response = await fetch("http://localhost:8080/productos"); // Ajusta la URL
+const productos = await response.json();
 
+interface Producto {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  stock: number;
+  imagenes: string[];
+  name: string;
+}
 ---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"> <!-- Aquí se configura UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filtro</title>
+</head>
+
+
+<body >
+ 
+<MenuD  class="filter-menu"/>
+<Menu/>
+  
 <HeaderStore/>
+<Layout headerClass="filter-header"/>
 <section class="store-product-listing" id="tienda">
   <section class="store-product-listing" id="tienda">
     <!-- Filtros -->
@@ -13,8 +43,8 @@ import "../styles/style.css";
         <h4>Select Price Range</h4>
         <div class="store-price-range">
           <span class="store-price-value">$0 BDT</span>
-          <input type="range" id="store-price-slider" class="store-slider" min="0" max="1000" value="0">
-          <span>$1000 BDT</span>
+          <input type="range" id="store-price-slider" class="store-slider" min="0" max="6000" value="0">
+          <span>$6000 COP</span>
         </div>
         <button id="store-apply-price-filter" class="store-apply-filter-btn">Apply Filter</button>
       </div>
@@ -68,25 +98,22 @@ import "../styles/style.css";
     </div>
 
     <!-- Product Grid -->
-    <div class="store-product-grid" id="store-product-grid">
-      <div class="store-product-item" data-price="99" data-category="featured" data-brand="artisan" data-tags="ambient,modern">
-        <a href="/product/1">
-          <img src="/images/luz.jpg" alt="Mini Desk Lamp">
+    {productos.map((producto: Producto) => (
+      <div class="store-product-item" data-price={producto.precio} data-category={producto.nombre} data-brand={producto} data-tags={producto}>
+        <a href={`/product/${producto.id}`}>
+          <img src={producto.imagenes[0]} alt={producto.nombre} />
         </a>
-        <h4>Mini Desk Lamp</h4>
-        <p>$ 99.0 BDT</p>
+        <h4>{producto.nombre}</h4>
+        <p>${producto.precio} BDT</p>
       </div>
-      <div class="store-product-item" data-price="345" data-category="luxury" data-brand="urban" data-tags="elegant,outdoor">
-        <a href="/product/2">
-          <img src="/images/lampi.jpg" alt="Dome Pendant">
-        </a>
-        <h4>Dome Pendant</h4>
-        <p>$ 345.0 BDT</p>
-      </div>
-      
+    ))}
     </div>
   </section>
 </section>
+
+<Footer/>
+</body >
+</Layout>
 <style>
 /* Contenedor principal */
 /* ======== Contenedor Principal ======== */
@@ -97,7 +124,7 @@ import "../styles/style.css";
   padding: 20px;
   background-color: #f8f8f8;
   
-  padding-top: 50px;
+  padding-top: 100px;
 
 }
 
@@ -171,9 +198,6 @@ import "../styles/style.css";
   gap: 20px;
   justify-content: start;
   max-width: 900px;
-}
-.store-product-item.hidden {
-  display: none ;
 }
 
 
@@ -251,112 +275,147 @@ import "../styles/style.css";
   background-color: #0056b3;
 }
 
+@media (max-width: 768px) {
+    .store-filter-container {
+        width: 100%;
+        position: relative;
+        top: auto;
+        margin-top: 20px; /* Espacio con los productos */
+        order: 2; /* Hace que el filtro se mueva debajo de los productos */
+    }
+    .store-product-listing {
+        flex-direction: column; /* Apila los elementos */
+        align-items: center;
+        position: relative;
+        z-index: 1; /* Para que no queden debajo del menú */
+    }
 
+    .store-product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en móviles */
+        width: 100%;
+        order: 1; /* Hace que los productos se muestren primero */
+        gap: 10px;
+        overflow: visible;
+        position: relative;
+  z-index: 1;
+    }
+
+    .store-product-item {
+        max-width: 100%;
+    }
+}
 
   </style>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const priceSlider = document.getElementById('store-price-slider') as HTMLInputElement;
-    const priceValue = document.querySelector('.store-price-value') as HTMLElement;
-    const applyFilterButton = document.getElementById('store-apply-price-filter') as HTMLButtonElement;
-    const productGrid = document.getElementById('store-product-grid') as HTMLElement;
-    const tags = document.querySelectorAll('.store-tag') as NodeListOf<HTMLElement>;
-    const categoryItems = document.querySelectorAll('.store-filter-list li') as NodeListOf<HTMLElement>;
-    const brandItems = document.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
-  
-    let selectedTags: string[] = [];
-    let selectedCategories: string[] = [];
-    let selectedBrands: string[] = [];
-    let currentPrice = 1000; // Cambié el valor máximo a 1000
-  
-    // Actualizar el valor del precio en tiempo real
-    if (priceSlider) {
-      priceSlider.max = "1000"; // 🔹 Limité el slider a 1000
-      priceSlider.addEventListener('input', () => {
-        currentPrice = parseInt(priceSlider.value);
-        if (priceValue) {
-          priceValue.textContent = `$${currentPrice} BDT`;
-        }
-      });
-    }
-  
-    // Aplicar filtro de precio
-    applyFilterButton?.addEventListener('click', () => {
-      filterProducts();
+ document.addEventListener('DOMContentLoaded', () => {
+  const priceSlider = document.getElementById('store-price-slider');
+  const priceValue = document.querySelector('.store-price-value');
+  const applyFilterButton = document.getElementById('store-apply-price-filter');
+  const productGrid = document.getElementById('store-product-grid');
+  const tags = document.querySelectorAll('.store-tag');
+  const categoryItems = document.querySelectorAll('.store-filter-list li');
+  const brandCheckboxes = document.querySelectorAll('.store-filter-list input[type="checkbox"]');
+
+  let selectedTags: string[] = [];
+  let selectedCategories: string[] = [];
+  let selectedBrands: string[] = [];
+  let currentPrice = parseInt((priceSlider as HTMLInputElement)?.value || '1000', 10); // Valor inicial del slider
+
+  // 🔹 Actualizar el valor del slider en tiempo real
+  if (priceSlider && priceValue) {
+    priceSlider.addEventListener('input', () => {
+      currentPrice = parseInt((priceSlider as HTMLInputElement).value, 10);
+      priceValue.textContent = `$${currentPrice} BDT`;
     });
-  
-    // Manejo de selección de etiquetas
-    tags.forEach(tag => {
-      tag.addEventListener('click', () => {
-        const tagValue = tag.textContent?.toLowerCase().trim() || '';
-        tag.classList.toggle('active');
-  
-        if (selectedTags.includes(tagValue)) {
-          selectedTags = selectedTags.filter(t => t !== tagValue);
-        } else {
-          selectedTags.push(tagValue);
-        }
-  
-        filterProducts();
-      });
-    });
-  
-    // Manejo de selección de categorías
-    categoryItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const category = item.textContent?.trim().toLowerCase() || '';
-        item.classList.toggle('active');
-  
-        if (selectedCategories.includes(category)) {
-          selectedCategories = selectedCategories.filter(c => c !== category);
-        } else {
-          selectedCategories.push(category);
-        }
-  
-        filterProducts();
-      });
-    });
-  
-    // Manejo de selección de marcas
-    brandItems.forEach(checkbox => {
-      checkbox.addEventListener('change', () => {
-        const brand = checkbox.parentElement?.textContent?.split('(')[0].trim().toLowerCase() || '';
-  
-        if (checkbox.checked) {
-          selectedBrands.push(brand);
-        } else {
-          selectedBrands = selectedBrands.filter(b => b !== brand);
-        }
-  
-        filterProducts();
-      });
-    });
-  
-    // Función para filtrar productos
-    function filterProducts() {
-      const products = document.querySelectorAll('.store-product-item') as NodeListOf<HTMLElement>;
-  
-      products.forEach(product => {
-        const price = parseInt(product.dataset.price || '0');
-        const productCategory = product.dataset.category?.toLowerCase().trim() || '';
-        const productBrand = product.dataset.brand?.toLowerCase().trim() || '';
-        const productTags = (product.dataset.tags || '').toLowerCase().split(',').map(tag => tag.trim());
-  
-        // 🔹 FIX: Si el precio es 0, se muestran todos los productos
-        const matchesPrice = currentPrice === 0 || price <= currentPrice;
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(productCategory);
-        const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(productBrand);
-        const matchesTags = selectedTags.length === 0 || selectedTags.some(tag => productTags.includes(tag));
-  
-        if (matchesPrice && matchesCategory && matchesBrand && matchesTags) {
-          product.classList.remove('hidden');
-        } else {
-          product.classList.add('hidden');
-        }
-      });
-    }
-  
+  }
+
+  // 🔹 Evento del botón "Apply Filter"
+  applyFilterButton?.addEventListener('click', () => {
+    currentPrice = parseInt((priceSlider as HTMLInputElement).value, 10);
+    console.log('Filtro aplicado. Precio máximo:', currentPrice);
     filterProducts();
   });
-  </script>
+
+  // 🔹 Manejo de selección de etiquetas (Tags)
+  tags.forEach(tag => {
+    tag.addEventListener('click', () => {
+      const tagValue = tag.textContent?.trim().toLowerCase() || '';
+      tag.classList.toggle('active');
+
+      if (selectedTags.includes(tagValue)) {
+        selectedTags = selectedTags.filter(t => t !== tagValue);
+      } else {
+        selectedTags.push(tagValue);
+      }
+
+      filterProducts();
+    });
+  });
+
+  // 🔹 Manejo de selección de categorías
+  categoryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const category = item.textContent ? item.textContent.trim().toLowerCase() : '';
+      item.classList.toggle('active');
+
+      if (selectedCategories.includes(category)) {
+        selectedCategories = selectedCategories.filter(c => c !== category);
+      } else {
+        selectedCategories.push(category);
+      }
+
+      filterProducts();
+    });
+  });
+
+  // 🔹 Manejo de selección de marcas
+  brandCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      const parentElement = checkbox.parentElement;
+      const brand = parentElement && parentElement.textContent ? parentElement.textContent.split('(')[0].trim().toLowerCase() : '';
+
+      if ((checkbox as HTMLInputElement).checked) {
+        selectedBrands.push(brand);
+      } else {
+        selectedBrands = selectedBrands.filter(b => b !== brand);
+      }
+
+      filterProducts();
+    });
+  });
+
+  // 🔹 Función para filtrar productos
+  function filterProducts() {
+    const products = document.querySelectorAll('.store-product-item');
+
+    products.forEach(product => {
+      const price = parseInt((product as HTMLElement).dataset.price || '0', 10);
+      const productCategory = (product as HTMLElement).dataset.category?.toLowerCase().trim();
+      const productBrand = (product as HTMLElement).dataset.brand?.toLowerCase().trim();
+      const productTags = ((product as HTMLElement).dataset.tags || '').toLowerCase().split(',').map((tag: string) => tag.trim());
+
+      console.log(`Producto: ${product.textContent?.trim() || ''}, Precio: ${price}`);
+
+      const matchesPrice = currentPrice === 0 || price <= currentPrice;
+      const matchesCategory = selectedCategories.length === 0 || (productCategory && selectedCategories.includes(productCategory));
+      const matchesBrand = selectedBrands.length === 0 || (productBrand && selectedBrands.includes(productBrand));
+      const matchesTags = selectedTags.length === 0 || selectedTags.some(tag => productTags.includes(tag));
+
+      if (matchesPrice && matchesCategory && matchesBrand && matchesTags) {
+        (product as HTMLElement).style.display = 'block';
+      } else {
+        (product as HTMLElement).style.display = 'none';
+      }
+    });
+  }
+
+  // 🔹 Aplicar filtro al cargar la página
+  filterProducts();
+});
+
+
+</script>
+
+  
   

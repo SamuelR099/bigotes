@@ -1,112 +1,49 @@
-<header class="header-b">
-    <nav class="nav-container">
-        <div class="logo">
-            <a href="/">
-                <img src="cl" alt="Astrofront" class="logo-img">
-              
+---
+const { class: className } = Astro.props; // Recibe la clase como prop
+---
+<html>
+<body>
+<header class={`header-b ${className || ''}`}>
+  <nav class="nav-container">
+      <!-- Logo -->
+      <div class="logo">
+          <a href="">
+              <img src="" alt="" class="">
+          </a>
+      </div>
+
+      <!-- Barra de búsqueda centrada -->
+      <div class="search-container">
+          <div class="search-bar">
+              <input type="text" placeholder="Search for products" />
+              <button class="search-button">
+                  <span class="sr-only"></span>
+                  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+              </button>
+          </div>
+      </div>
+
+      <!-- Iconos a la derecha -->
+      <div class="nav-right">
+          <div class="nav-icons">
+            <a href="" class="menu-item">
+                <i class="fas fa-shopping-cart"></i>
+               
+                <span class="two-badge-cart">0</span>
             </a>
-        </div>
-        <div class="nav-right">
-            <div class="search-bar">
-                <input type="text" placeholder="Search for products" />
-                <button class="search-button">
-                    <span class="sr-only">Search</span>
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="nav-icons">
-                <a href="/cart" class="icon-link">
-                    <span class="sr-only">Cart</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                    </svg>
-                </a>
-                <a href="/account" class="icon-link">
-                    <span class="sr-only">Account</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </nav>
+            <a href="/Wishlist" class="menu-item">
+                <i class="fas fa-heart"></i>
+                
+                <span class="two-badge-wishlist">0</span>
+            </a>
+          </div>
+      </div>
+  </nav>
 </header>
-
+</body>
+</html>
 <style>
-.header-b {
-  position: fixed; /* Fija el header en la parte superior */
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: white; /* Color de fondo */
-  z-index: 1000; /* Asegura que esté por encima del contenido */
-  padding: 10px 0; /* Agrega algo de padding arriba y abajo */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Agrega sombra para mejor visualización */
-}
-
-/* Asegurar que el contenido no quede tapado */
-.main-content {
-  margin-top: 80px; /* Ajusta esto según la altura del header */
-  padding: 20px; /* Agrega espacio interno */
-}
-
-/* Ajuste adicional para que el contenedor del nav no se deforme */
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: var(--max-width);
-  padding: 0 9%;
-  height: 60px; /* Ajusta esto según la altura del header */
-}
-
-/* Asegurar que la barra de búsqueda se vea bien */
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 20px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  max-width: 350px;
-}
-
-.search-bar input {
-  border: none;
-  outline: none;
-  padding: 5px;
-  font-size: 14px;
-  flex-grow: 1;
-  min-width: 150px;
-}
-
-.search-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-}
-.nav-icons {
-  display: flex;
-  gap: 20px;
-}
-.nav-icons .icon-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: black;
-}
-
-/* Ocultar el texto "Cart" y "Account" */
-.nav-icons .icon-link span {
-  display: none;
-}
-
-
 
 </style>

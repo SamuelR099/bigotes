@@ -8,7 +8,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: "Rubik Variable", sans-serif;
-  background-color: #ededeb;
+  background-color: #fffdf6;
 }
 
 header {
@@ -237,7 +237,7 @@ section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0; /* Elimina el padding interno para usar el de la sección */
-  background-color: #ebede1;
+  background-color: #fffdf6;
 }
 
 .grid-container h1 {

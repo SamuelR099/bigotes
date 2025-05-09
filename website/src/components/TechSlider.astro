@@ -1,0 +1,125 @@
+---
+const logos = [
+ // Marcas de vehículos
+ { alt: "Chevrolet", src: " https://logo.clearbit.com/chevrolet.com" },
+  { alt: "Ford", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Ford_Motor_Company_Logo.svg/1200px-Ford_Motor_Company_Logo.svg.png" },
+  { alt: "Hyundai", src: "https://i.ibb.co/KxjtFq9g/Hyundai.png" },
+  { alt: "Mazda", src: "https://i.ibb.co/Lhp1mkwd/Mazda.png" },
+  { alt: "Foton", src: "https://i.ibb.co/sdfstbRD/Foton.png" },
+  { alt: "Nissan", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Nissan_2020_logo.svg/1200px-Nissan_2020_logo.svg.png" },
+  { alt: "Renault", src: " https://i.ibb.co/Swz2rNRW/Renault.png"},
+  { alt: "Toyota", src: "https://i.ibb.co/C33YKgMF/Toyota.png" },
+  { alt: "Kia", src: "https://i.ibb.co/67DSxRFW/Kia-Symbol.png" },
+  { alt: "JAC", src: " https://i.ibb.co/5WTLTH7t/Jac.png" },
+  
+  
+  // Marcas de autopartes
+  { alt: "Aisin", src: "https://i.ibb.co/WNyRr4j3/Aisin.png" },
+  { alt: "Eaton", src: "https://i.ibb.co/spx7MdhY/Eaton.png" },
+  { alt: "Sachs", src: "https://i.ibb.co/9kYMv20J/sachs.png" },
+  { alt: "Valeo", src: "https://i.ibb.co/dJz7X8Df/Valeo.png" },
+  { alt: "Spicer", src: "https://i.ibb.co/spGLz8PH/spicer-logo-400x95.png" },
+  { alt: "BorgWarner", src: "https://i.ibb.co/Wpc40GYH/borgwarner-seeklogo.png" },
+  { alt: "LUK", src: "https://i.ibb.co/RkcWNjLd/600020100-1000x1000h.jpg" }
+];
+---
+
+
+<div class="wrapper">
+  <div class="slider-container">
+    <div class="slider-track">
+      {[...logos, ...logos].map((logo, index) => (
+        <div class="slider-item" style={`--i: ${index}`}>
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: center;
+  margin-inline: auto;
+  mask-image: linear-gradient(270deg, transparent, #000 20%, #000 80%, transparent);
+  -webkit-mask-image: linear-gradient(270deg, transparent, #000 20%, #000 80%, transparent);
+  max-width: 1536px;
+  padding-block: 1rem;
+  overflow: hidden;
+  padding: 1vh 0;
+  position: relative;
+  width: 90%;
+  mask-image: linear-gradient(270deg, transparent, #000 20%, #000 80%, transparent);
+}
+.brand-slider-wrapper {
+  margin-bottom: 5rem;
+}
+.brand-slider {
+  transition: width 1s;
+  max-height: 100px;
+  object-fit: contain;
+}
+.slider-container {
+  background-color: #fffdf6;
+  border-top: 1px solid #00619a;
+  border-bottom: 1px solid #00619a;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+  gap: 3rem;
+  animation: slide 30s linear infinite;
+}
+
+.slider-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+}
+
+.slider-item img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.slider-item img:hover {
+  transform: scale(1.1);
+}
+.slider-section {
+  margin-bottom: 4rem; /* separación con el footer */
+  padding: 1rem 1rem; /* espacio interno */
+  background-color: #f1f5f9; /* gris claro */
+  border-top: 1px solid #7c05d8;
+  border-bottom: 1px solid #7c05d8;
+  box-sizing: border-box;
+  height: 150px; /* en lugar de height: 100px */
+  
+}
+
+
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+</style>

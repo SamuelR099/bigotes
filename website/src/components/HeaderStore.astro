@@ -1,49 +1,86 @@
 ---
-const { class: className } = Astro.props; // Recibe la clase como prop
+const { class: className } = Astro.props;
+ // Adjusted the path to match the correct location
+import { CartList } from "../components/CartList.tsx";
+import { CartWrapper } from '../components/CartWrapper.tsx';
+import { CartButton } from '../components/CartButton.tsx';
 ---
+
 <html>
-<body>
-<header class={`header-b ${className || ''}`}>
-  <nav class="nav-container">
-      <!-- Logo -->
-      <div class="logo">
-          <a href="">
-              <img src="" alt="" class="">
+  <body>
+    <header class={`header-b ${className || ''}`}>
+      <nav class="nav-container">
+        <!-- Logo -->
+        <div class="logo">
+          <a href="/">
+            <img src="" alt="Embragues del Oriente" class="h-10" />
           </a>
-      </div>
+        </div>
 
-      <!-- Barra de búsqueda centrada -->
-      <div class="search-container">
+        <!-- Barra de búsqueda centrada -->
+        <div class="search-container">
           <div class="search-bar">
-              <input type="text" placeholder="Search for products" />
-              <button class="search-button">
-                  <span class="sr-only"></span>
-                  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                  </svg>
-              </button>
+            <input type="text" placeholder="Buscar productos..." />
+            <button class="search-button" aria-label="Buscar">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </button>
           </div>
-      </div>
+        </div>
 
-      <!-- Iconos a la derecha -->
-      <div class="nav-right">
+        <!-- Iconos a la derecha -->
+        <div class="nav-right">
           <div class="nav-icons">
-            <a href="" class="menu-item">
-                <i class="fas fa-shopping-cart"></i>
-               
-                <span class="two-badge-cart">0</span>
-            </a>
-            <a href="/Wishlist" class="menu-item">
-                <i class="fas fa-heart"></i>
-                
-                <span class="two-badge-wishlist">0</span>
-            </a>
-          </div>
-      </div>
-  </nav>
-</header>
-</body>
-</html>
-<style>
+              
+                <CartButton client:load />
+                <CartWrapper client:load />
+            
+              </div>
+            </div>
+          
+            
+            <!-- Cart container -->
+            <div class="cart-container" id="cart-container">
+              <CartList client:load />
 
-</style>
+             
+            </div>
+
+           
+          
+      </nav>
+    </header>
+  </body>
+</html>
+
+
+
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cartToggle = document.getElementById('cart-toggle');
+    const cartContainer = document.getElementById('cart-container');
+    const closeCart = document.getElementById('close-cart');
+
+    cartToggle?.addEventListener('click', () => {
+      if (cartContainer) {
+        cartContainer.classList.toggle('visible');
+      }
+    });
+
+    closeCart?.addEventListener('click', () => {
+      if (cartContainer) {
+        cartContainer.classList.remove('visible');
+      }
+    });
+  });
+</script>
+
+
+ 

@@ -6,7 +6,8 @@ import HeaderStore from "../components/HeaderStore.astro";
 import MenuD from '../components/MenuD.astro';
 import Menu from '../components/Menu.astro';
 import "../styles/style.css";
-
+import Swiper from '../components/Swiper.astro';
+import TechSlider from '../components/TechSlider.astro';
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -69,36 +70,14 @@ import "../styles/style.css";
     
     <section class="featured-products">
         <div class="container-products">
-            <h2 class="section-title">Featured Products</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="/images/llanta.png" alt="Nourison 23" class="product-image" />
-                    <h3 class="product-title">Nourison 23</h3>
-                    <p class="product-price">$ 600.0 BDT <span class="original-price">$ 670.0 BDT</span></p>
-                </div>
-                <div class="product-card">
-                    <img src="/images/embrague.jpg" alt="Single Pendant" class="product-image" />
-                    <h3 class="product-title">Single Pendant</h3>
-                    <p class="product-price">$ 4200.0 BDT <span class="original-price">$ 5000.0 BDT</span></p>
-                </div>
-                <div class="product-card">
-                    <img src="/images/motor.jpg" alt="Light Drum Pendant" class="product-image" />
-                    <h3 class="product-title">Light Drum Pendant</h3>
-                    <p class="product-price">$ 2567.0 BDT</p>
-                </div>
-                <div class="product-card">
-                    <img src="/images/pastillas.jpg" alt="Silk Drum Lamp Shade" class="product-image" />
-                    <h3 class="product-title">Silk Drum Lamp Shade</h3>
-                    <p class="product-price">$ 3200.0 BDT <span class="original-price">$ 3300.0 BDT</span></p>
-                </div>
-            </div>
+            
             <div class="button-container">
                 <a href="/filtro" class="view-all-btn">+ See All Products</a> <!-- Enlace a la nueva página -->
             </div>
         </div>
-        
     </section>
-   
+   <TechSlider/>
+   <Swiper/>
     <Footer/>
     </Layout>
 

@@ -7,8 +7,10 @@ import MenuD from "../components/MenuD.astro";
 import Menu from "../components/Menu.astro";
 const response = await fetch("http://localhost:8080/productos"); // Ajusta la URL
 const productos = await response.json();
+import AddToCartButton from "../components/AddToCartButton.tsx";
 
 interface Producto {
+[x: string]: any;
   id: number;
   nombre: string;
   descripcion: string;
@@ -17,6 +19,7 @@ interface Producto {
   imagenes: string[];
   name: string;
 }
+
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -24,6 +27,7 @@ interface Producto {
   <meta charset="UTF-8"> <!-- Aquí se configura UTF-8 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Filtro</title>
+  
 </head>
 
 
@@ -50,59 +54,124 @@ interface Producto {
       </div>
 
       <div class="store-filter-section">
-        <h4>Product Categories</h4>
-        <ul class="store-filter-list">
-          <li>Featured Products (7)</li>
-          <li>Luminaire Essentials (3)</li>
-          <li>Luxe Luminaires (1)</li>
-          <li>Radiant Stands (2)</li>
-          <li>Skyward Elegance (2)</li>
-          <li>Suspended Splendor (1)</li>
-          <li>Task Illumination (0)</li>
+        <h4>CATEGORIAS</h4>
+        <ul class="product-categories">
+          <li>Accesorios</li>
+          <li>Accesorios Epever</li>
+  
+          <li class="has-submenu">
+            <span>Baterias Solares</span>
+            <span class="toggle-sign">+</span>
+            <ul class="submenu">
+              <li>Baterias de GEL</li>
+              <li class="has-submenu">
+                <span>Baterias de Litio LIFEPO4</span>
+                <span class="toggle-sign">+</span>
+                <ul class="submenu">
+                  <li>Modelo A</li>
+                  <li>Modelo B</li>
+                  <li>Modelo C</li>
+                </ul>
+              </li>
+              <li>Baterías para Movilidad</li>
+              <li>Baterías para UPS</li>
+            </ul>
+          </li>
+  
+          <li class="has-submenu">
+            <span>Breakers, Fusibles Y DPS AC-DC</span>
+            <span class="toggle-sign">+</span>
+            <ul class="submenu">
+              <li>Subcategoria 1</li>
+              <li>Subcategoria 2</li>
+            </ul>
+          </li>
+  
+          <li class="has-submenu">
+            <span>Cable Electrico</span>
+            <span class="toggle-sign">+</span>
+            <ul class="submenu">
+              <li>Subcategoria A</li>
+              <li>Subcategoria B</li>
+            </ul>
+          </li>
         </ul>
-      </div>
-
-      <!-- Brands -->
-      <div class="store-filter-section">
-        <h4>Brands</h4>
-        <ul class="store-filter-list">
-          <li><input type="checkbox"> Artisan Globe Lamps (2)</li>
-          <li><input type="checkbox"> Urban Lights Emporium (3)</li>
-          <li><input type="checkbox"> Ecoglow Designs (1)</li>
-          <li><input type="checkbox"> Nextcart Nexus (2)</li>
-          <li><input type="checkbox"> Company 123 (4)</li>
-          <li><input type="checkbox"> Home Decor (0)</li>
+        <li class="has-submenu">
+          <span>Cable Electrico</span>
+          <span class="toggle-sign">+</span>
+          <ul class="submenu">
+            <li>Subcategoria A</li>
+            <li>Subcategoria B</li>
+          </ul>
+        </li>
+      </ul>
+      <li class="has-submenu">
+        <span>Cable Electrico</span>
+        <span class="toggle-sign">+</span>
+        <ul class="submenu">
+          <li>Subcategoria A</li>
+          <li>Subcategoria B</li>
         </ul>
+      </li>
+    </ul>
+    <li class="has-submenu">
+      <span>Cable Electrico</span>
+      <span class="toggle-sign">+</span>
+      <ul class="submenu">
+        <li>Subcategoria A</li>
+        <li>Subcategoria B</li>
+      </ul>
+    </li>
+  </ul>
+  <li class="has-submenu">
+    <span>Cable Electrico</span>
+    <span class="toggle-sign">+</span>
+    <ul class="submenu">
+      <li>Subcategoria A</li>
+      <li>Subcategoria B</li>
+    </ul>
+  </li>
+</ul>
+<li class="has-submenu">
+  <span>Cable Electrico</span>
+  <span class="toggle-sign">+</span>
+  <ul class="submenu">
+    <li>Subcategoria A</li>
+    <li>Subcategoria B</li>
+  </ul>
+</li>
+</ul>
+<li class="has-submenu">
+  <span>Cable Electrico</span>
+  <span class="toggle-sign">+</span>
+  <ul class="submenu">
+    <li>Subcategoria A</li>
+    <li>Subcategoria B</li>
+  </ul>
+</li>
+</ul>
       </div>
+    </div>
 
-      <div class="store-filter-section">
-        <h4>Tags</h4>
-        <div class="store-tags">
-          <div class="store-tag">Ambient</div>
-          <div class="store-tag">Elegant</div>
-          <div class="store-tag">Modern</div>
-          <div class="store-tag">Outdoor</div>
-          <div class="store-tag">Spotlight</div>
-          <div class="store-tag">Shine</div>
-          <div class="store-tag">Style</div>
-          <div class="store-tag">Cotton</div>
-          <div class="store-tag">Glowing</div>
-          <div class="store-tag">Wireless</div>
-          <div class="store-tag">Bedroom</div>
-          <div class="store-tag">Copper</div>
-          <div class="store-tag">Shedding</div>
-          <div class="store-tag">Wood</div>
-          <div class="store-tag">Glow</div>
-        </div>
-      </div>
     </div>
 
     <!-- Product Grid -->
     {productos.map((producto: Producto) => (
-      <div class="store-product-item" data-price={producto.precio} data-category={producto.nombre} data-brand={producto} data-tags={producto}>
-        <a href={`/product/${producto.id}`}>
-          <img src={producto.imagenes[0]} alt={producto.nombre} />
-        </a>
+      <div class="store-product-item">
+        <div class="image-container">
+          <a href={`/product/${producto.id}`}>
+            <img src={producto.imagenes[0]} alt={producto.nombre} />
+          </a>
+          <AddToCartButton
+  client:only="react"
+  productId={String(producto.id)}
+  marcas={producto.marcas}
+/>
+
+
+
+
+        </div>
         <h4>{producto.nombre}</h4>
         <p>${producto.precio} BDT</p>
       </div>
@@ -115,6 +184,116 @@ interface Producto {
 </body >
 </Layout>
 <style>
+  .product-categories {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .product-categories li {
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 12px 8px;
+    position: relative;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: #00619a ;
+    color: #fff;
+    text-transform: capitalize;
+    line-height: 1.4;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+    transition: all .4s ease 0s;
+    -webkit-transition: all .4s ease 0s;
+    cursor: pointer;
+  }
+  .product-categories li:hover {
+    background-color: #0373b3;
+  }
+
+.has-submenu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center
+  }
+
+  .has-submenu > span:first-child {
+    flex-grow: 1;
+  }
+
+  .toggle-sign {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 2px 8px;
+    background-color: #ffffff;
+    color: #000;
+    border-radius: 3px;
+    text-transform: initial;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+  }
+
+  .submenu {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: none;
+  }
+
+  .submenu li {
+    background-color: #E3E1D9;
+    color: #333;
+    padding: 8px 15px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-transform: initial;
+    transition: all 0.3s ease;
+  }
+
+  .submenu li:hover {
+    background-color: #e0e0e0;
+  }
+
+  .submenu.active {
+    display: block;
+  }
+    /* Estilo para subcategorías anidadas */
+  .submenu .has-submenu {
+    background-color: #E3E1D9;
+    color: #333;}
+    .submenu .has-submenu > span:first-child {
+    color: #333;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .image-container {
+  position: relative;
+}
+
 /* Contenedor principal */
 /* ======== Contenedor Principal ======== */
 .store-product-listing {
@@ -184,9 +363,9 @@ interface Producto {
 }
 
 .store-tag:hover {
-  background-color: #007bff;
+  background-color: #00619a;;
   color: white;
-  border-color: #007bff;
+  border-color: #00619a;;
 }
 
 /* ======== Contenedor de Productos ======== */
@@ -240,7 +419,54 @@ interface Producto {
   transform: translateY(-5px);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
+/* ======== Estilos Boton Add Carrito ======== */
 
+/* Posiciona el botón sobre la imagen */
+.add-to-cart-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #00619a;;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0;
+  --tw-duration: .3s;
+  transition-duration: 0.3s;
+  pointer-events: none;
+}
+
+/* Hace que el botón aparezca al hacer hover sobre la imagen */
+.image-container:hover .add-to-cart-btn {
+  bottom: 20px;
+  opacity: 1;
+  pointer-events: auto;
+}
+/* Mostramos el botón al hacer hover sobre el producto */
+.store-product-item:hover .add-to-cart-btn {
+  bottom: 20px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Asegúrate que el contenedor tenga posición relativa */
+.store-product-item {
+  position: relative; /* ← Necesario para posicionar el botón dentro */
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  overflow: hidden;
+  max-width: 250px;
+}
 /* ======== Rango de Precio ======== */
 .store-price-range {
   display: flex;
@@ -262,7 +488,7 @@ interface Producto {
   width: 100%;
   margin-top: 10px;
   padding: 8px 12px;
-  background-color: #007bff;
+  background-color: #00619a;
   color: white;
   border: none;
   border-radius: 5px;
@@ -272,7 +498,7 @@ interface Producto {
 
 #store-apply-price-filter:hover,
 .store-apply-filter-btn:hover {
-  background-color: #0056b3;
+  background-color: #00619a;
 }
 
 @media (max-width: 768px) {
@@ -417,5 +643,24 @@ interface Producto {
 
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleButtons = document.querySelectorAll('.toggle-sign');
   
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation(); // evitar burbujeo
+  
+        const parentLi = button.closest('li');
+        if (!parentLi) return; // 💡 Verificación de seguridad
+  
+        const submenu = parentLi.querySelector('.submenu');
+        if (submenu) {
+          submenu.classList.toggle('active');
+          button.textContent = submenu.classList.contains('active') ? '−' : '+';
+        }
+      });
+    });
+  });
+    </script>
   

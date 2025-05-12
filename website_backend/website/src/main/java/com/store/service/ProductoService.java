@@ -33,7 +33,7 @@ public class ProductoService {
             existing.setNombre(producto.getNombre());
             existing.setDescripcion(producto.getDescripcion());
             existing.setPrecio(producto.getPrecio());
-        
+            existing.setSpecifications(producto.getSpecifications());
             return productoRepository.save(existing);
         });
     }

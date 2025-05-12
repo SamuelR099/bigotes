@@ -15,6 +15,7 @@ public class ProductoDTO {
     private String nombre;
     private String descripcion;
     private BigDecimal precio;
+    private String specifications;
     private List<String> imagenes;
     private List<ProductoMarcaDTO> marcas;
 }

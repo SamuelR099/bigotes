@@ -17,6 +17,7 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private BigDecimal precio;
+    private String specifications;
 
     @ElementCollection
     @CollectionTable(name = "producto_imagenes", joinColumns = @JoinColumn(name = "producto_id"))
@@ -34,4 +35,6 @@ public class Producto {
 
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
     private List<ProductoMarca> productoMarcas;
+
+    
 }

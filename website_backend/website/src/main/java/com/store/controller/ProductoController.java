@@ -71,7 +71,7 @@ public class ProductoController {
             producto.getNombre(),
             producto.getDescripcion(),
             producto.getPrecio(),
-            // este podrías ignorarlo si ya lo manejas por marca
+            producto.getSpecifications(),
             producto.getImagenes(),
             marcasDto
         );

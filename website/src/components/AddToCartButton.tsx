@@ -10,9 +10,14 @@ interface Marca {
 interface Props {
   productId: string;
   marcas: Marca[];
+  className?: string;
 }
 
-export default function AddToCartButton({ productId, marcas }: Props) {
+export default function AddToCartButton({
+  productId,
+  marcas,
+  className,
+}: Props) {
   const [qty, setQty] = useState(1);
   const [marcaId, setMarcaId] = useState<number | null>(null);
 
@@ -38,9 +43,9 @@ export default function AddToCartButton({ productId, marcas }: Props) {
   };
 
   return (
-    <form onSubmit={handleAddToCart} className="space-y-2">
+    <form onSubmit={handleAddToCart}>
       <select
-        className="border rounded px-2 py-1 w-full mt-6"
+        className="border rounded p-[10px] w-full mb-4"
         value={marcaId ?? ""}
         onChange={(e) => setMarcaId(Number(e.target.value))}
         required
@@ -53,9 +58,29 @@ export default function AddToCartButton({ productId, marcas }: Props) {
         ))}
       </select>
 
-      <div className="relative group">
-        <button className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out bg-[#00619a] text-white py-2 px-2 rounded-md font-semibold mb-8">
-          Add To Cart
+      {/* Botón con separación superior */}
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          className={`relative w-[100px] h-[35px] bg-[#00619a] text-white rounded-md text-sm font-bold flex items-center justify-center transition duration-700 hover:bg-[#004a74] group${
+            className ? " " + className : ""
+          }`}
+        >
+          <span className="absolute inset-0  flex items-center justify-center transition-transform duration-500 group-hover:opacity-0">
+            Add To Cart
+          </span>
+          <span className="absolute inset-0 flex items-center justify-center transition-opacity duration-500 opacity-0 group-hover:opacity-100 ">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={24}
+              height={24}
+              fill="currentColor"
+              className="bi bi-cart2"
+              viewBox="0 0 16 16"
+            >
+              <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+            </svg>
+          </span>
         </button>
       </div>
     </form>

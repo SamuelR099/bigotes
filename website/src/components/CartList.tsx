@@ -1,29 +1,11 @@
-import React from "react";
+import { useStore } from "@nanostores/react";
+import { isCartOpen, closeCart } from "../state/cartUI";
 import { useCart } from "../state/cart";
 import { CartItem } from "./CartItem";
-
-// Define el tipo Marca
-interface Marca {
-  idMarca: number;
-  nombreMarca: string;
-  stock: number;
-}
-
-// Asegúrate de que los productos tengan la propiedad marcas
-interface ICartItem {
-  productId: number;
-  id: number;
-  name: string;
-  image: string;
-  precio: number;
-  qty: number;
-  marcaSeleccionada: string;
-  marcas?: Marca[]; // Propiedad marcas opcional
-}
-
+import React from "react";
 export const CartList: React.FC = () => {
   const { cart } = useCart();
-  const [open, setOpen] = React.useState(true);
+  const open = useStore(isCartOpen); // Estado global del carrito
   const [isClient, setIsClient] = React.useState(false);
 
   React.useEffect(() => {
@@ -37,11 +19,11 @@ export const CartList: React.FC = () => {
   const total = parseFloat((subtotal + tax).toFixed(2));
 
   return (
-    <div className="fixed top-12 -right-1 z-50 w-full max-w-sm bg-white p-6 rounded-2xl shadow-xl border border-zinc-200">
+    <div className="fixed top-[3.95rem] -right-1 z-50 w-full max-w-sm bg-white p-6 rounded-2xl shadow-xl border border-zinc-200">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold text-zinc-800">Your Cart</h2>
         <button
-          onClick={() => setOpen(false)}
+          onClick={closeCart} // Usa el estado global
           className="text-zinc-400 hover:text-red-500 transition"
         >
           ✕
@@ -53,7 +35,7 @@ export const CartList: React.FC = () => {
       ) : (
         <>
           <ul className="divide-y divide-zinc-200 max-h-72 overflow-y-auto mb-4">
-            {cart.map((product: ICartItem) => (
+            {cart.map((product) => (
               <li key={product.productId} className="py-4">
                 <CartItem
                   product={{ ...product, marcas: product.marcas || [] }}

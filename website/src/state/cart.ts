@@ -1,6 +1,6 @@
 //cart.ts
 import { atom } from "nanostores";
-import { getProductRequest } from "./Product";
+import { getProductRequest, type Marca } from "./Product";
 import { useStore } from "@nanostores/react";
 
 export interface ICartItem {
@@ -12,6 +12,7 @@ export interface ICartItem {
   qty: number;
   stockDisponible: number;
   marcaSeleccionada: string;
+  marcas?: Marca[];
 }
 
 export const loadingAddCart = atom<boolean>(false);

@@ -23,7 +23,7 @@ header {
   align-items: center;
   display: flex;
   transition: all 0.3s ease;
-  height: 60px; /* Ajusta este valor según la altura de tu header */
+  height: 70px; /* Ajusta este valor según la altura de tu header */
 }
 
 header.scrolled {
@@ -32,9 +32,18 @@ header.scrolled {
 }
 
 .logo-container {
-  margin-right: auto; /* Empuja el logo a la izquierda */
+  width: 80px;
+  height: 100px; /* Ajustado para que el logo completo quepa */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
-
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Evita deformaciones */
+}
 .navbar {
   display: flex;
   align-items: center;

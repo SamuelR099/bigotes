@@ -7,8 +7,8 @@ import Layout from '../../layouts/Layout.astro';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import MenuD from '../../components/MenuD.astro';
 import Menu from '../../components/Menu.astro';
-
-
+import Swiper from '../../components/Swiper.astro';
+import AddToCartButton from '../../components/AddToCartButton';
 interface Marca {
   idMarca: number;
   nombreMarca: string;
@@ -20,6 +20,7 @@ interface Producto {
   nombre: string;
   descripcion: string;
   precio: number;
+  specifications: string;
   imagenes: string[];
   marcas: Marca[];
 }
@@ -45,6 +46,13 @@ if (!product) {
   throw new Error("⚠️ Producto no encontrado");
 }
 const totalStock = product.marcas.reduce((acc, marca) => acc + marca.stock, 0);
+interface Props {
+  product: Producto;
+  productId: string;
+  marcas: Marca[];
+  className?: string;
+}
+
 ---
 
 
@@ -77,17 +85,14 @@ const totalStock = product.marcas.reduce((acc, marca) => acc + marca.stock, 0);
       </p>
       
       <form>
+        
         <label for="marca">Marca:</label>
-        <select id="marca" name="marca" data-marcas={JSON.stringify(product.marcas)}>
-                  {product.marcas.map((marca) => (
-                    <option value={marca.idMarca}>{marca.nombreMarca}_Stock:{marca.stock}</option>
-                  ))}
-                </select>
-        <label for="size">Size:</label>
-        <select id="size" name="size">
-          <option value="">{}</option>
-        </select>
-        <button type="submit">Add To Cart</button>
+        
+       
+   <AddToCartButton  client:load productId={product.id.toString()} marcas={product.marcas} className="w-64 text-white px-6 py-3 rounded-md text-2xl text-left"/>
+
+      
+
       </form>
       <p class="delivery">{}</p>
       <p class="payment">Payment: {}</p>
@@ -112,22 +117,102 @@ const totalStock = product.marcas.reduce((acc, marca) => acc + marca.stock, 0);
          
         </ul>
       </div>
+      <p>Tags:</p>
+      
     </div>
+  </div>
+<div class="description-wrapper">
+  <div class="tab-buttons">
+    <button id="descriptionBtn" class="tab-button active">Descripcion</button>
+    <button id="specsBtn" class="tab-button">Especificaciones</button>
   </div>
 
-  <div class="description-wrapper">
-    <div class="description-container">
-      <h2 class="description-title">Description</h2>
+  <div class="tab-content">
+    <div id="descriptionContent" class="tab-panel active">
+      <h2 class="description-title"></h2>
       <p>{product.descripcion}</p>
     </div>
+    <div id="specsContent" class="tab-panel hidden">
+      <h2 class="description-title"></h2>
+      <p>{product.specifications}</p>
+    </div>
   </div>
-    <Footer/> </main>
+</div>
+<Swiper/>
+    <Footer/> 
+  </main>
     <body/>
 </Layout>
 
 
 
 <style>
+.tab-buttons {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1300px; /* Ajusta según sea necesario */
+  margin: 0 auto; 
+}
+
+.tab-button {
+  
+  border-bottom: none;
+  background-color: #F2F2F2;
+  padding: 10px 20px;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  font-weight: bold;
+  color: #333;
+}
+
+.tab-button.active {
+  background-color: #F2F2F2;
+ 
+}
+
+.tab-content {
+ display: flex;
+  flex-direction: column; /* 🔥 Asegura que el contenido se muestre debajo */
+  align-items: center; /* 🔥 Centra el contenido */
+  width: 100%;
+ 
+ /* 🔥 Agrega fondo blanco */
+  border-radius: 10px;
+
+}
+.description-wrapper {
+  display: flex;
+  flex-direction: column; /* 🔥 Apila los elementos verticalmente */
+  align-items: center; /* 🔥 Centra los elementos horizontalmente */
+  width: 100%;
+ 
+}
+.tab-panel {
+  text-align: left; /* 🔥 Mantiene el texto alineado a la izquierda */
+  width: 100%;
+  max-width: 1300px; /* Ajusta según necesites */
+   background-color: #F2F2F2; /* 🔥 Fondo blanco para los paneles también */
+  padding: 15px;
+  box-shadow : 2px 2px 0px rgba(0, 0, 0, 0.1); 
+}
+
+
+.description-container {
+  max-width: 800px; /* Ajusta según necesites */
+  width: 100%;
+  padding: 15px;
+  background: #fff;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  text-align: center; /* Centra el texto dentro del contenedor */
+}
+
+
+.tab-panel.hidden {
+  display: none;
+}
 
 .product-container {
   display: flex;
@@ -136,9 +221,9 @@ const totalStock = product.marcas.reduce((acc, marca) => acc + marca.stock, 0);
     max-width: 1300px;
     margin: 40px auto;
     padding: 20px 20px 137px;
-    background: #fff;
+    background: #F2F2F2;
     border-radius: 10px;
-    box-shadow: 0 0 10px #0000001a;
+    box-shadow : 0 0 10px rgba(0, 0, 0, 0.1); 
     
 }
 
@@ -189,7 +274,7 @@ const totalStock = product.marcas.reduce((acc, marca) => acc + marca.stock, 0);
 
 .product-details {
    max-width: 516px;
-  padding-right: 181px;
+  padding: 0 20px;
 }
 
 h1 {
@@ -327,7 +412,7 @@ button {
 
 .zoom {
     position: relative;
-    height: 623px;
+    height: 433px;
     
     overflow: hidden;
     cursor: zoom-in;
@@ -488,4 +573,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   marcaSelect?.addEventListener('change', updateStock);
   window.addEventListener('DOMContentLoaded', updateStock);
+</script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const descBtn = document.getElementById('descriptionBtn');
+    const specsBtn = document.getElementById('specsBtn');
+    const descContent = document.getElementById('descriptionContent');
+    const specsContent = document.getElementById('specsContent');
+
+    if (descBtn && specsBtn && descContent && specsContent) {
+      descBtn.addEventListener('click', () => {
+        descBtn.classList.add('active');
+        specsBtn.classList.remove('active');
+        descContent.classList.remove('hidden');
+        specsContent.classList.add('hidden');
+      });
+
+      specsBtn.addEventListener('click', () => {
+        specsBtn.classList.add('active');
+        descBtn.classList.remove('active');
+        specsContent.classList.remove('hidden');
+        descContent.classList.add('hidden');
+      });
+    }
+  });
 </script>

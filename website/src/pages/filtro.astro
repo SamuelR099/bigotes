@@ -56,11 +56,11 @@ interface Producto {
       <div class="store-filter-section">
         <h4>CATEGORIAS</h4>
         <ul class="product-categories">
-          <li>Accesorios</li>
-          <li>Accesorios Epever</li>
+          <li>Balibomba</li>
+          <li>Balineras</li>
   
           <li class="has-submenu">
-            <span>Baterias Solares</span>
+            <span>Bombas</span>
             <span class="toggle-sign">+</span>
             <ul class="submenu">
               <li>Baterias de GEL</li>
@@ -79,7 +79,7 @@ interface Producto {
           </li>
   
           <li class="has-submenu">
-            <span>Breakers, Fusibles Y DPS AC-DC</span>
+            <span>Collarin</span>
             <span class="toggle-sign">+</span>
             <ul class="submenu">
               <li>Subcategoria 1</li>
@@ -88,52 +88,52 @@ interface Producto {
           </li>
   
           <li class="has-submenu">
-            <span>Cable Electrico</span>
+            <span>Cremallera del volante</span>
             <span class="toggle-sign">+</span>
             <ul class="submenu">
               <li>Subcategoria A</li>
               <li>Subcategoria B</li>
             </ul>
           </li>
-        </ul>
+       
         <li class="has-submenu">
-          <span>Cable Electrico</span>
+          <span>Guaya Embrague</span>
           <span class="toggle-sign">+</span>
           <ul class="submenu">
             <li>Subcategoria A</li>
             <li>Subcategoria B</li>
           </ul>
         </li>
-      </ul>
-      <li class="has-submenu">
-        <span>Cable Electrico</span>
+        
+        <li class="has-submenu">
+        <span>Horquilla</span>
         <span class="toggle-sign">+</span>
         <ul class="submenu">
           <li>Subcategoria A</li>
           <li>Subcategoria B</li>
         </ul>
-      </li>
-    </ul>
+        </li>
+    
     <li class="has-submenu">
-      <span>Cable Electrico</span>
+      <span>Kit de embrague</span>
       <span class="toggle-sign">+</span>
       <ul class="submenu">
         <li>Subcategoria A</li>
         <li>Subcategoria B</li>
-      </ul>
+      
     </li>
-  </ul>
+  
   <li class="has-submenu">
-    <span>Cable Electrico</span>
+    <span>Retenedor Embrague</span>
     <span class="toggle-sign">+</span>
     <ul class="submenu">
       <li>Subcategoria A</li>
       <li>Subcategoria B</li>
-    </ul>
+    
   </li>
 </ul>
 <li class="has-submenu">
-  <span>Cable Electrico</span>
+  <span>Servicios: Rectificar Volante del Motor</span>
   <span class="toggle-sign">+</span>
   <ul class="submenu">
     <li>Subcategoria A</li>
@@ -142,7 +142,7 @@ interface Producto {
 </li>
 </ul>
 <li class="has-submenu">
-  <span>Cable Electrico</span>
+  <span>Soporte de Motor y de Caja</span>
   <span class="toggle-sign">+</span>
   <ul class="submenu">
     <li>Subcategoria A</li>
@@ -162,11 +162,7 @@ interface Producto {
           <a href={`/product/${producto.id}`}>
             <img src={producto.imagenes[0]} alt={producto.nombre} />
           </a>
-          <AddToCartButton
-  client:only="react"
-  productId={String(producto.id)}
-  marcas={producto.marcas}
-/>
+          <AddToCartButton client:only="react" productId={String(producto.id)} marcas={producto.marcas} />
 
 
 
@@ -272,22 +268,6 @@ interface Producto {
     .submenu .has-submenu > span:first-child {
     color: #333;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   .image-container {
@@ -401,9 +381,7 @@ interface Producto {
   transition: transform 0.3s ease; /* Efecto suave */
 }
 
-.store-product-item img:hover {
-  transform: scale(1.1); /* Pequeño zoom al pasar el mouse */
-}
+
 .store-product-item h4 {
   font-size: 1.1em;
   margin: 10px 0;
@@ -454,19 +432,7 @@ interface Producto {
 }
 
 /* Asegúrate que el contenedor tenga posición relativa */
-.store-product-item {
-  position: relative; /* ← Necesario para posicionar el botón dentro */
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  overflow: hidden;
-  max-width: 250px;
-}
+
 /* ======== Rango de Precio ======== */
 .store-price-range {
   display: flex;
@@ -534,113 +500,52 @@ interface Producto {
 
   </style>
 <script>
- document.addEventListener('DOMContentLoaded', () => {
-  const priceSlider = document.getElementById('store-price-slider');
+document.addEventListener('DOMContentLoaded', () => {
+  const priceSlider = document.getElementById('store-price-slider') as HTMLInputElement;
   const priceValue = document.querySelector('.store-price-value');
   const applyFilterButton = document.getElementById('store-apply-price-filter');
-  const productGrid = document.getElementById('store-product-grid');
-  const tags = document.querySelectorAll('.store-tag');
-  const categoryItems = document.querySelectorAll('.store-filter-list li');
-  const brandCheckboxes = document.querySelectorAll('.store-filter-list input[type="checkbox"]');
+  const productItems = document.querySelectorAll('.store-product-item');
 
-  let selectedTags: string[] = [];
-  let selectedCategories: string[] = [];
-  let selectedBrands: string[] = [];
-  let currentPrice = parseInt((priceSlider as HTMLInputElement)?.value || '1000', 10); // Valor inicial del slider
+  let currentPrice = priceSlider ? parseInt(priceSlider.value, 10) : 0;
 
   // 🔹 Actualizar el valor del slider en tiempo real
   if (priceSlider && priceValue) {
     priceSlider.addEventListener('input', () => {
-      currentPrice = parseInt((priceSlider as HTMLInputElement).value, 10);
-      priceValue.textContent = `$${currentPrice} BDT`;
+      currentPrice = parseInt(priceSlider.value, 10);
+      priceValue.textContent = `$${currentPrice} COP`;
     });
   }
 
   // 🔹 Evento del botón "Apply Filter"
   applyFilterButton?.addEventListener('click', () => {
-    currentPrice = parseInt((priceSlider as HTMLInputElement).value, 10);
-    console.log('Filtro aplicado. Precio máximo:', currentPrice);
-    filterProducts();
-  });
-
-  // 🔹 Manejo de selección de etiquetas (Tags)
-  tags.forEach(tag => {
-    tag.addEventListener('click', () => {
-      const tagValue = tag.textContent?.trim().toLowerCase() || '';
-      tag.classList.toggle('active');
-
-      if (selectedTags.includes(tagValue)) {
-        selectedTags = selectedTags.filter(t => t !== tagValue);
-      } else {
-        selectedTags.push(tagValue);
-      }
-
+    if (priceSlider) {
+      currentPrice = parseInt(priceSlider.value, 10);
+      console.log('Filtro aplicado. Precio máximo:', currentPrice);
       filterProducts();
-    });
+    }
   });
 
-  // 🔹 Manejo de selección de categorías
-  categoryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const category = item.textContent ? item.textContent.trim().toLowerCase() : '';
-      item.classList.toggle('active');
+  // 🔹 Función para filtrar productos según el precio
+ function filterProducts() {
+  productItems.forEach(item => {
+    let priceElement = item.querySelector('p');
+    if (priceElement && priceElement.textContent) {
+      let priceText = priceElement.textContent.replace('$', '').replace(' COP', '');
+      let price = parseFloat(priceText);
 
-      if (selectedCategories.includes(category)) {
-        selectedCategories = selectedCategories.filter(c => c !== category);
+      // Si el slider está en 0, mostramos todos los productos
+      if (currentPrice === 0 || price <= currentPrice) {
+        (item as HTMLElement).style.display = 'block';
       } else {
-        selectedCategories.push(category);
+        (item as HTMLElement).style.display = 'none';
       }
-
-      filterProducts();
-    });
+    }
   });
+}
 
-  // 🔹 Manejo de selección de marcas
-  brandCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-      const parentElement = checkbox.parentElement;
-      const brand = parentElement && parentElement.textContent ? parentElement.textContent.split('(')[0].trim().toLowerCase() : '';
-
-      if ((checkbox as HTMLInputElement).checked) {
-        selectedBrands.push(brand);
-      } else {
-        selectedBrands = selectedBrands.filter(b => b !== brand);
-      }
-
-      filterProducts();
-    });
-  });
-
-  // 🔹 Función para filtrar productos
-  function filterProducts() {
-    const products = document.querySelectorAll('.store-product-item');
-
-    products.forEach(product => {
-      const price = parseInt((product as HTMLElement).dataset.price || '0', 10);
-      const productCategory = (product as HTMLElement).dataset.category?.toLowerCase().trim();
-      const productBrand = (product as HTMLElement).dataset.brand?.toLowerCase().trim();
-      const productTags = ((product as HTMLElement).dataset.tags || '').toLowerCase().split(',').map((tag: string) => tag.trim());
-
-      console.log(`Producto: ${product.textContent?.trim() || ''}, Precio: ${price}`);
-
-      const matchesPrice = currentPrice === 0 || price <= currentPrice;
-      const matchesCategory = selectedCategories.length === 0 || (productCategory && selectedCategories.includes(productCategory));
-      const matchesBrand = selectedBrands.length === 0 || (productBrand && selectedBrands.includes(productBrand));
-      const matchesTags = selectedTags.length === 0 || selectedTags.some(tag => productTags.includes(tag));
-
-      if (matchesPrice && matchesCategory && matchesBrand && matchesTags) {
-        (product as HTMLElement).style.display = 'block';
-      } else {
-        (product as HTMLElement).style.display = 'none';
-      }
-    });
-  }
-
-  // 🔹 Aplicar filtro al cargar la página
+  // 🔹 Llama a la función de filtrado al cargar la página
   filterProducts();
 });
-
-
 </script>
 
 <script>

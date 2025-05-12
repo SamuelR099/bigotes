@@ -261,15 +261,21 @@
 
 .collection-card {
   text-align: center;
-  text-decoration: none; /* Elimina el subrayado */
-  color: inherit; /* Mantiene el color original del texto */
-  display: block;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 300px; /* Asegura altura mínima uniforme */
 }
 
 .collection-card img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 1rem;
+  width: auto;
+  height: 200px; /* o el alto que prefieras */
+  object-fit: contain; /* Mantiene proporciones dentro del contenedor */
+  display: block;
+  margin: 0 auto 1rem auto; /* Centra la imagen horizontalmente */
 }
 
 .collection-card h3 {

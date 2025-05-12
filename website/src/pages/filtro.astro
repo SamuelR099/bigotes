@@ -5,8 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import "../styles/style.css";
 import MenuD from "../components/MenuD.astro";
 import Menu from "../components/Menu.astro";
-const response = await fetch("http://localhost:8080/productos"); // Ajusta la URL
-const productos = await response.json();
+
 import AddToCartButton from "../components/AddToCartButton.tsx";
 
 interface Producto {
@@ -19,7 +18,10 @@ interface Producto {
   imagenes: string[];
   name: string;
 }
-
+const productos: Producto[] = await (async () => {
+  const response = await fetch(`${import.meta.env.PUBLIC_API_BASE_URL}/productos`);
+  return await response.json();
+})();
 ---
 <!DOCTYPE html>
 <html lang="es">

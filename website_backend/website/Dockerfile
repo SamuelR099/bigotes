@@ -1,14 +1,12 @@
-# Usar imagen de Java 17
-FROM openjdk:17-jdk-slim
-
-# Establecer directorio de trabajo en el contenedor
+# Etapa 1: Construcción
+FROM maven:3.8.7-openjdk-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copiar el archivo JAR desde la carpeta target (asegúrate de cambiar el nombre si es diferente)
-COPY target/website-0.0.1-SNAPSHOT.jar app.jar
-
-# Exponer el puerto de la aplicación
+# Etapa 2: Ejecución
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/website-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# Ejecutar la aplicación
 CMD ["java", "-jar", "app.jar"]
